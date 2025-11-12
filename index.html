@@ -1,25 +1,125 @@
-<!DOCTYPE html>
+<!--
+File: lamtruc-spa-github-pages.html
+Instructions:
+1. Tạo repository có tên: yourusername.github.io
+2. Tạo file index.html, dán nội dung file này vào và Commit.
+3. Vào Settings -> Pages, chọn Branch main (root) nếu cần.
+4. Truy cập: https://yourusername.github.io
+
+Mô tả: Mẫu landing page cho Spa, responsive, có nút gọi nhanh, Zalo, Google Maps embed, phần dịch vụ, đánh giá, liên hệ.
+-->
+
+<!doctype html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Lam Trúc Spa</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Lam Trúc Spa - Chăm sóc sắc đẹp</title>
+  <meta name="description" content="Lam Trúc Spa - Dịch vụ chăm sóc sắc đẹp, massage, chăm sóc da tại Long An. Đặt lịch: 0909 xxx xxx">
+  <link rel="icon" href="data:;base64,iVBORw0KGgo=">
   <style>
-    body { font-family: Arial, sans-serif; text-align: center; background: #fff8f8; color: #333; margin: 0; }
-    header { background: #f48fb1; padding: 20px; color: white; font-size: 24px; font-weight: bold; }
-    section { padding: 30px; max-width: 800px; margin: auto; }
-    footer { background: #f8bbd0; padding: 15px; color: #fff; }
-    img { max-width: 100%; border-radius: 10px; }
+    :root{--pink:#f85b9a;--muted:#666;--bg:#fff8fb}
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Inter,system-ui,Arial,sans-serif;background:var(--bg);color:#222;line-height:1.5}
+    .wrap{max-width:980px;margin:0 auto;padding:18px}
+    header{background:linear-gradient(90deg,var(--pink),#ff8fb8);color:#fff;padding:22px;border-radius:14px}
+    .brand{display:flex;gap:12px;align-items:center}
+    .logo{width:68px;height:68px;border-radius:12px;background:#fff6f8;display:flex;align-items:center;justify-content:center;font-weight:700;color:var(--pink)}
+    h1{font-size:20px;margin:0}
+    p.lead{margin:8px 0 0;color:#fffddf;opacity:0.95}
+
+    .hero{display:grid;grid-template-columns:1fr;gap:14px;margin-top:18px}
+    .card{background:#fff;padding:16px;border-radius:12px;box-shadow:0 6px 18px rgba(0,0,0,0.06)}
+
+    .cta-row{display:flex;gap:10px;flex-wrap:wrap}
+    .btn{flex:1;padding:12px;border-radius:10px;text-align:center;text-decoration:none;font-weight:600}
+    .btn-primary{background:var(--pink);color:#fff}
+    .btn-outline{border:1px solid #eee;color:var(--pink);background:linear-gradient(180deg,#fff,#fff)}
+
+    .features{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:12px}
+    .feat{background:linear-gradient(180deg,#fff,#fff);padding:14px;border-radius:10px;text-align:center}
+    .feat h3{margin:6px 0 0;font-size:14px}
+
+    .services{display:grid;gap:10px;margin-top:14px}
+    .service{display:flex;gap:12px;align-items:center}
+    .service img{width:84px;height:68px;object-fit:cover;border-radius:8px}
+
+    footer{margin-top:18px;text-align:center;color:var(--muted);font-size:13px}
+
+    /* responsive */
+    @media (max-width:800px){.features{grid-template-columns:repeat(2,1fr)}.brand{gap:8px}}
+    @media (max-width:480px){.features{grid-template-columns:1fr}.btn{flex:unset;width:100%}}
+
+    /* tiny utilities */
+    .muted{color:var(--muted)}
+    .chip{display:inline-block;padding:6px 10px;border-radius:999px;background:#fff6f8;color:var(--pink);font-weight:600;font-size:13px}
+    .map-wrapper iframe{width:100%;height:220px;border:0;border-radius:10px}
   </style>
 </head>
 <body>
-  <header>🌸 Lam Trúc Spa 🌸</header>
-  <section>
-    <h2>Chào mừng bạn đến với Lam Trúc Spa</h2>
-    <p>Chăm sóc sắc đẹp & thư giãn chuyên nghiệp tại Long An.</p>
-    <img src="https://i.imgur.com/9F4Nq4m.jpg" alt="Spa Image">
-    <p>Liên hệ: <strong>0909 xxx xxx</strong> | <em>lamtrucspa@gmail.com</em></p>
-  </section>
-  <footer>© 2025 Lam Trúc Spa - Thiết kế bởi bạn 💖</footer>
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <div class="logo">LT</div>
+        <div>
+          <h1>Lam Trúc Spa</h1>
+          <p class="lead">Chăm sóc da & thư giãn chuyên nghiệp • Long An</p>
+        </div>
+      </div>
+    </header>
+
+    <main class="hero">
+      <div class="card">
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+          <div style="min-width:0">
+            <h2 style="margin:0 0 6px">Chăm sóc trọn gói - Da sáng, thư thái</h2>
+            <p class="muted" style="margin:0">Giảm 20% cho khách hàng mới. Giữ lịch nhanh qua điện thoại hoặc Zalo.</p>
+          </div>
+          <div style="min-width:200px">
+            <div class="cta-row">
+              <a class="btn btn-primary" href="tel:0909xxxxxx">Gọi ngay: 0909 xxx xxx</a>
+              <a class="btn btn-outline" href="https://zalo.me/0909xxxxxx" target="_blank">Chat Zalo</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="features">
+          <div class="feat"><div class="chip">⭐ 4.9</div><h3>Chuyên viên tay nghề cao</h3></div>
+          <div class="feat"><div class="chip">🕒</div><h3>Giờ linh hoạt</h3></div>
+          <div class="feat"><div class="chip">🧾</div><h3>Hoá đơn & bảo hành</h3></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Dịch vụ nổi bật</h3>
+        <div class="services">
+          <div class="service"><img src="https://i.imgur.com/9F4Nq4m.jpg" alt=""> <div><strong>Chăm sóc da mặt</strong><div class="muted">Tẩy tế bào chết, dưỡng ẩm chuyên sâu</div></div></div>
+          <div class="service"><img src="https://i.imgur.com/7vQ0G8D.jpg" alt=""> <div><strong>Massage thư giãn</strong><div class="muted">Giảm căng thẳng, phục hồi năng lượng</div></div></div>
+          <div class="service"><img src="https://i.imgur.com/2Yp2Z1X.jpg" alt=""> <div><strong>Triệt lông & spa body</strong><div class="muted">An toàn, hiệu quả dài lâu</div></div></div>
+        </div>
+      </div>
+
+      <div class="card map-wrapper">
+        <h3>Địa chỉ & Bản đồ</h3>
+        <!-- Thay location bằng tọa độ cửa hàng bạn -->
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15672.123456789!2d106.5!3d10.5!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31a...!2sLam%20Truc%20Spa!5e0!3m2!1svi!2s!4v0000000000000" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <p class="muted" style="margin-top:8px">Địa chỉ: Số X, Đường Y, Long An • Mở: 8:00 - 20:00</p>
+      </div>
+
+      <div class="card">
+        <h3>Ý kiến khách hàng</h3>
+        <p>"Dịch vụ rất chuyên nghiệp — da mình cải thiện rõ sau 2 tuần" — <strong>Lan</strong></p>
+        <p>"Giá tốt, nhân viên thân thiện" — <strong>Hòa</strong></p>
+      </div>
+
+    </main>
+
+    <footer>
+      <p>© 2025 Lam Trúc Spa • Hotline: <strong>0909 xxx xxx</strong></p>
+      <p class="muted">Website deploy miễn phí trên GitHub Pages • Bạn có thể đổi nội dung trong file index.html</p>
+    </footer>
+  </div>
 </body>
 </html>
