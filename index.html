@@ -17,7 +17,8 @@
     <style>
         body::before {
             /* THAY THẾ: Đường dẫn ảnh nền của bạn */
-            background-image: url('uploads/anhnen.jpg');
+            /* Thay ảnh nền cũ bằng ảnh rừng mùa thu */
+            background-image: url('https://images.pexels.com/photos/158652/forest-path-trees-light-158652.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
         }
 
         /* Thêm CSS cho canvas 3D */
@@ -321,7 +322,7 @@
         // Khởi tạo các biến cơ bản của three.js
         let scene, camera, renderer;
         const leaves = [];
-        const leafCount = 300; // Số lượng lá
+        const leafCount = 500; // Tăng số lượng lá
 
         // Hàm khởi tạo
         function init() {
@@ -356,10 +357,11 @@
             // Tải hình ảnh lá
             const textureLoader = new THREE.TextureLoader();
             // *** SỬ DỤNG LINK HÌNH ẢNH CỦA BẠN ***
-            const leafTexture = textureLoader.load('uploads/anh-la-roi.png'); 
+            // Thay bằng ảnh lá mùa thu màu cam/vàng
+            const leafTexture = textureLoader.load('https://freepngimg.com/thumb/autumn_leaf/29202-7-autumn-leaf-transparent-background.png'); 
             
             // Sử dụng PlaneGeometry (mặt phẳng) để làm lá cho đơn giản
-            const leafGeometry = new THREE.PlaneGeometry(0.3, 0.3); 
+            const leafGeometry = new THREE.PlaneGeometry(0.2, 0.2); // Giảm kích thước cơ bản
             // Dùng MeshPhongMaterial để lá phản ứng với ánh sáng
             const leafMaterial = new THREE.MeshPhongMaterial({ 
                 map: leafTexture,       // Sử dụng hình ảnh đã tải
@@ -373,9 +375,9 @@
 
                 // Đặt vị trí ngẫu nhiên cho lá
                 leaf.position.set(
-                    (Math.random() - 0.5) * 40, // Phân bổ theo chiều X
+                    (Math.random() - 0.5) * 30, // Thu hẹp phạm vi X
                     (Math.random() * 20) + 10,  // Phân bổ bên trên màn hình (Y)
-                    (Math.random() - 0.5) * 40  // Phân bổ theo chiều Z (chiều sâu)
+                    (Math.random() - 0.5) * 30  // Thu hẹp phạm vi Z (chiều sâu)
                 );
 
                 // Đặt góc xoay ngẫu nhiên ban đầu
@@ -384,6 +386,10 @@
                     Math.random() * Math.PI * 2,
                     Math.random() * Math.PI * 2
                 );
+
+                // Thêm: Kích thước ngẫu nhiên cho mỗi lá
+                const scale = 0.5 + Math.random() * 0.8; // Kích thước từ 0.5x đến 1.3x
+                leaf.scale.set(scale, scale, scale);
 
                 // Lưu trữ tốc độ rơi và xoay riêng cho mỗi lá
                 leaf.userData = {
@@ -441,8 +447,8 @@
                     // Đặt lại vị trí Y lên trên cùng
                     leaf.position.y = 20;
                     // Đặt lại vị trí X và Z ngẫu nhiên
-                    leaf.position.x = (Math.random() - 0.5) * 40;
-                    leaf.position.z = (Math.random() - 0.5) * 40;
+                    leaf.position.x = (Math.random() - 0.5) * 30; // Thu hẹp phạm vi X
+                    leaf.position.z = (Math.random() - 0.5) * 30; // Thu hẹp phạm vi Z
                 }
             });
 
