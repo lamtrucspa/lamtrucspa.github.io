@@ -1,0 +1,467 @@
+html { scroll-behavior: smooth; }
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #F8FBF6; /* Màu nền dự phòng */
+    color: #1F2937;
+    position: relative;
+    z-index: 1;
+}
+/* Lớp giả ::before cho ảnh nền CỐ ĐỊNH */
+body::before {
+    content: '';
+    position: fixed; /* Quan trọng: ghim ảnh nền */
+    top: 0; left: 0; right: 0; bottom: 0;
+    /* Dòng background-image sẽ được đặt inline trong index.php vì nó là động */
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; /* Quan trọng: giữ ảnh nền đứng yên */
+    opacity: 0.2; /* Tăng độ rõ từ 0.1 lên 0.2 */
+    z-index: -1;
+}
+.cta-button {
+    background-color: #15803d; /* green-700 */
+    color: #FFFFFF;
+    font-weight: 700;
+    padding: 14px 32px;
+    border-radius: 999px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    transition: all 0.3s ease;
+    display: inline-block;
+    margin-top: 24px;
+}
+.cta-button:hover {
+    background-color: #166534; /* green-800 */
+    transform: scale(1.05);
+}
+/* Nút nổi (Floating Button) */
+.fab-container {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    z-index: 50;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.fab-toggle {
+    background-color: #4F46E5;
+    color: white;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.fab-toggle:hover {
+    background-color: #4338CA;
+    transform: rotate(15deg);
+}
+.fab-links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+    pointer-events: none;
+}
+.fab-container:hover .fab-links {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: all;
+}
+.fab-link {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+}
+.fab-link:hover { transform: scale(1.1); }
+/* Thêm CSS cho icon dạng ảnh (IMG) */
+.fab-link img {
+    width: 24px;  /* Kích thước icon */
+    height: 24px; /* Kích thước icon */
+    object-fit: contain; /* Đảm bảo ảnh vừa vặn, không bị méo */
+}
+/* CSS cho Swiper Slider */
+.swiper {
+    width: 100%;
+    height: 500px; /* Điều chỉnh chiều cao slider */
+    border-radius: 12px;
+    border: 1px solid rgba(0,0,0,0.1);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+}
+.swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.swiper-slide img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.swiper-pagination-bullet-active {
+    background-color: #15803d !important;
+}
+.swiper-button-next, .swiper-button-prev {
+    color: #15803d !important;
+    background-color: rgba(255, 255, 255, 0.7);
+    padding: 16px;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+}
+.swiper-button-next::after, .swiper-button-prev::after {
+    font-size: 24px !important;
+    font-weight: 900;
+}
+
+/* CSS cho Form Đánh giá */
+.review-label { display: block; margin-bottom: 6px; font-weight: 500; color: #3f3f46; }
+.review-input, .review-textarea {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #d4d4d8;
+    border-radius: 6px;
+    color: #18181b;
+    background-color: #fafafa;
+    transition: all 0.2s;
+}
+.review-input:focus, .review-textarea:focus {
+    border-color: #16a34a;
+    background-color: white;
+    box-shadow: 0 0 0 2px #dcfce7;
+    outline: none;
+}
+.review-textarea { min-height: 100px; }
+.review-file-input {
+    font-size: 14px;
+    border-radius: 6px;
+    border: 1px solid #d4d4d8;
+    background-color: #fafafa;
+}
+.review-file-input::file-selector-button {
+    margin-right: 12px;
+    padding: 10px 12px;
+    border: none;
+    border-right: 1px solid #d4d4d8;
+    background-color: #f4f4f5;
+    color: #3f3f46;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+ .review-file-input::file-selector-button:hover {
+    background-color: #e4e4e7;
+ }
+ 
+/* CSS cho Star Rating */
+.star-rating {
+    display: flex;
+    flex-direction: row-reverse; /* Quan trọng: lật ngược thứ tự */
+    justify-content: flex-end; /* Đẩy sao về bên trái */
+    gap: 0.25rem; /* 4px */
+}
+.star-rating input[type="radio"] {
+    display: none;
+}
+.star-rating label {
+    font-size: 2rem; /* 32px */
+    color: #d4d4d8; /* gray-300 */
+    cursor: pointer;
+    transition: color 0.2s;
+    padding: 0 2px;
+}
+/* Khi hover 1 sao, nó và các sao BÊN PHẢI (do đã reverse) sẽ đổi màu */
+.star-rating label:hover,
+.star-rating label:hover ~ label {
+    color: #f59e0b; /* amber-500 */
+}
+/* Khi check 1 sao, nó và các sao BÊN PHẢI (do đã reverse) sẽ đổi màu */
+.star-rating input[type="radio"]:checked ~ label {
+    color: #f59e0b; /* amber-500 */
+}
+.star-rating-label-text {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 500;
+    color: #3f3f46;
+}
+
+/* CSS cho Lightbox (Phóng to ảnh) */
+#imageLightbox {
+    display: none; /* Ẩn mặc định */
+    position: fixed;
+    z-index: 1000;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(8px);
+    padding: 2rem;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    cursor: zoom-out;
+}
+#imageLightbox.show {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 1;
+}
+#lightboxImage {
+    max-width: 90vw;
+    max-height: 90vh;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    transform: scale(0.9);
+    transition: transform 0.3s ease-in-out;
+}
+#imageLightbox.show #lightboxImage {
+    transform: scale(1);
+}
+#closeLightbox {
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    font-size: 3rem;
+    font-weight: 200;
+    color: white;
+    cursor: pointer;
+    line-height: 1;
+}
+.cursor-zoom-in {
+    cursor: zoom-in;
+}
+
+/* MỚI: CSS cho Thẻ Tin tức */
+.blog-card {
+    background-color: #ffffff;
+    border-radius: 0.5rem; /* 8px */
+    border: 1px solid #e5e7eb; /* gray-200 */
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    overflow: hidden; /* Đảm bảo ảnh bo tròn */
+}
+.blog-card:hover {
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+    transform: translateY(-4px);
+}
+.blog-image {
+    width: 100%;
+    height: 200px; /* 12rem */
+    object-fit: cover;
+}
+.blog-content {
+    padding: 1.5rem; /* 24px */
+}
+.blog-title {
+    font-size: 1.25rem; /* 20px */
+    font-weight: 700;
+    color: #14532d; /* green-900 */
+    margin-bottom: 0.5rem; /* 8px */
+}
+.blog-date {
+    font-size: 0.875rem; /* 14px */
+    color: #6b7280; /* gray-500 */
+    margin-bottom: 1rem; /* 16px */
+}
+.blog-excerpt {
+    font-size: 1rem; /* 16px */
+    color: #374151; /* gray-700 */
+    line-height: 1.6;
+}
+
+/* MỚI: CSS cho Service Modal (Pop-up) */
+.service-modal {
+    display: none; /* Ẩn mặc định */
+    position: fixed;
+    z-index: 900; /* Dưới lightbox ảnh */
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(5px);
+    padding: 1.5rem;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    overflow-y: auto; /* Cho phép cuộn nếu modal quá cao */
+}
+.service-modal.show {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 1;
+}
+.service-modal-content {
+    position: relative;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    width: 100%;
+    max-width: 700px; /* Tăng độ rộng */
+    max-height: 90vh; /* Giới hạn chiều cao */
+    overflow-y: auto; /* Cho phép cuộn NỘI DUNG modal */
+    transform: scale(0.9);
+    transition: transform 0.3s ease-in-out;
+    display: flex; /* Bật flexbox */
+    flex-direction: column; /* Xếp theo chiều dọc */
+}
+.service-modal.show .service-modal-content {
+    transform: scale(1);
+}
+.service-modal-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 2.5rem;
+    font-weight: 300;
+    color: #6b7280; /* gray-500 */
+    cursor: pointer;
+    line-height: 1;
+    z-index: 10;
+}
+.service-modal-close:hover { color: #111827; }
+.service-modal-media {
+    width: 100%;
+    flex-shrink: 0; /* Không co lại */
+    border-bottom: 1px solid #e5e7eb;
+    background-color: #f9fafb;
+}
+.service-modal-media img {
+    width: 100%;
+    height: auto;
+    max-height: 400px; /* Giới hạn chiều cao ảnh */
+    object-fit: cover;
+    display: block;
+}
+.service-modal-media iframe {
+     width: 100%;
+     height: 100%;
+     aspect-ratio: 16 / 9;
+     display: block;
+}
+.service-modal-header {
+     padding: 1.5rem 1.5rem 1rem 1.5rem;
+     flex-shrink: 0;
+}
+.service-modal-title {
+    font-size: 1.5rem; /* 24px */
+    font-weight: 700;
+    color: #14532d; /* green-900 */
+}
+.service-modal-info {
+    font-size: 1rem;
+    color: #4b5563; /* gray-600 */
+    margin-top: 0.5rem;
+}
+.service-modal-body {
+    padding: 0 1.5rem 1.5rem 1.5rem;
+    overflow-y: auto; /* Chỉ cuộn phần body nếu cần */
+    flex-grow: 1; /* Lấp đầy phần còn lại */
+}
+.service-modal-desc {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #374151;
+    /* Cho phép xuống dòng tự động */
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+.service-modal-trigger {
+    cursor: pointer; /* Biến con trỏ thành hình bàn tay */
+}
+/* CSS cho Nút Phát Nhạc */
+.music-toggle {
+    position: fixed;
+    bottom: 2rem;
+    left: 2rem; /* Đặt ở góc trái */
+    z-index: 50;
+    background-color: #15803d; /* Màu xanh lá cây */
+    color: white;
+    width: 50px; /* Nhỏ hơn nút chat 1 chút */
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.music-toggle:hover {
+    background-color: #166534;
+    transform: scale(1.1);
+}
+/* CSS cho icon bên trong (chúng ta sẽ dùng 2 icon) */
+.music-toggle .icon-play,
+.music-toggle .icon-pause {
+    display: none; /* Mặc định ẩn */
+    width: 24px; /* Kích thước icon */
+    height: 24px;
+}
+/* Lớp 'playing' sẽ được JS thêm vào để đổi icon */
+.music-toggle.playing .icon-pause {
+    display: block;
+}
+.music-toggle:not(.playing) .icon-play {
+    display: block;
+}
+/* --- CSS CHO HIỆU ỨNG LÁ RƠI --- */
+#leaf-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* Cho phép nhấp chuột xuyên qua */
+    overflow: hidden;
+    z-index: 999; /* Hiển thị trên cùng */
+}
+
+.leaf {
+    position: absolute;
+    top: -100px; /* Bắt đầu từ bên ngoài màn hình */
+    width: 30px;  /* Kích thước lá (có thể điều chỉnh) */
+    height: 30px; /* Kích thước lá (có thể điều chỉnh) */
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: 0.8;
+    
+    /* Gọi animation */
+    animation: fall linear infinite;
+}
+
+/* Định nghĩa animation 'fall' */
+@keyframes fall {
+    0% {
+        transform: translateY(0) rotateZ(0deg);
+        opacity: 0.8;
+    }
+    90% {
+        opacity: 0.8;
+    }
+    100% {
+        /* Rơi xuống 100vh (chiều cao màn hình) + 100px (vị trí bắt đầu) */
+        transform: translateY(calc(100vh + 100px)) rotateZ(360deg);
+        opacity: 0; /* Mờ dần khi đi ra ngoài */
+    }
+}
