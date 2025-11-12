@@ -18,7 +18,7 @@
         body::before {
             /* THAY THẾ: Đường dẫn ảnh nền của bạn */
             /* Thay ảnh nền cũ bằng ảnh rừng mùa thu */
-            background-image: url('https://images.pexels.com/photos/158652/forest-path-trees-light-158652.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+            background-image: url('uploads/anhnen.jpg');
         }
 
         /* Thêm CSS cho canvas 3D */
@@ -358,7 +358,7 @@
             const textureLoader = new THREE.TextureLoader();
             // *** SỬ DỤNG LINK HÌNH ẢNH CỦA BẠN ***
             // Thay bằng ảnh lá mùa thu màu cam/vàng
-            const leafTexture = textureLoader.load('https://freepngimg.com/thumb/autumn_leaf/29202-7-autumn-leaf-transparent-background.png'); 
+            const leafTexture = textureLoader.load('uploads/anh-la-roi.png'); 
             
             // Sử dụng PlaneGeometry (mặt phẳng) để làm lá cho đơn giản
             const leafGeometry = new THREE.PlaneGeometry(0.2, 0.2); // Giảm kích thước cơ bản
