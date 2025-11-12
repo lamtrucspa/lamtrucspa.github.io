@@ -11,16 +11,33 @@
     
     <link rel="stylesheet" href="style.css?v=1.0.1">
 
+    <!-- Tải thư viện three.js cho hiệu ứng 3D -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
     <style>
         body::before {
             /* THAY THẾ: Đường dẫn ảnh nền của bạn */
             background-image: url('uploads/anhnen.jpg');
         }
+
+        /* Thêm CSS cho canvas 3D */
+        #leaf-canvas-3d {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1; /* Đặt phía sau tất cả */
+            pointer-events: none; /* Cho phép click xuyên qua */
+        }
     </style>
 </head>
 <body class="antialiased">
 
-    <div id="leaf-container"></div>
+    <!-- Canvas cho hiệu ứng lá rơi 3D -->
+    <canvas id="leaf-canvas-3d"></canvas>
+    
+    <!-- <div id="leaf-container"></div>  (Đã xóa) -->
     
     <div class="fab-container">
         <div class="fab-links">
@@ -294,10 +311,148 @@
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="script.js?v=1.0.1" defer></script>
 
-    <script>
-        // THAY THẾ: Đường dẫn ảnh lá rơi (nếu muốn)
-        // Bỏ trống '' nếu không muốn có hiệu ứng
+    <!-- Xóa script cho lá rơi 2D cũ -->
+    <!-- <script>
         window.fallingLeafImageUrl = 'uploads/anh-la-roi.png'; 
+    </script> -->
+
+    <!-- BẮT ĐẦU: Script cho hiệu ứng lá rơi 3D -->
+    <script type="module">
+        // Khởi tạo các biến cơ bản của three.js
+        let scene, camera, renderer;
+        const leaves = [];
+        const leafCount = 300; // Số lượng lá
+
+        // Hàm khởi tạo
+        function init() {
+            // 1. Tạo cảnh (Scene)
+            scene = new THREE.Scene();
+            // Đã xóa sương mù (fog) để hợp với nền web
+
+            // 2. Tạo Camera (Góc nhìn)
+            camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            camera.position.z = 15; // Đặt camera lùi ra xa để thấy cảnh
+
+            // 3. Tạo Renderer (Trình kết xuất)
+            const canvas = document.getElementById('leaf-canvas-3d'); // Trỏ đến canvas mới
+            renderer = new THREE.WebGLRenderer({ 
+                canvas: canvas,
+                antialias: true, // Bật khử răng cưa
+                alpha: true // Cho phép nền TRONG SUỐT
+            });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(window.devicePixelRatio); // Tăng độ nét
+            renderer.setClearAlpha(0); // Đảm bảo nền hoàn toàn trong suốt
+
+            // 4. Thêm ánh sáng
+            const ambientLight = new THREE.AmbientLight(0xffffff, 0.7); // Ánh sáng môi trường
+            scene.add(ambientLight);
+
+            const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8); // Ánh sáng mặt trời
+            directionalLight.position.set(5, 10, 7.5);
+            scene.add(directionalLight);
+
+            // 5. Tạo lá
+            // Tải hình ảnh lá
+            const textureLoader = new THREE.TextureLoader();
+            // *** SỬ DỤNG LINK HÌNH ẢNH CỦA BẠN ***
+            const leafTexture = textureLoader.load('uploads/anh-la-roi.png'); 
+            
+            // Sử dụng PlaneGeometry (mặt phẳng) để làm lá cho đơn giản
+            const leafGeometry = new THREE.PlaneGeometry(0.3, 0.3); 
+            // Dùng MeshPhongMaterial để lá phản ứng với ánh sáng
+            const leafMaterial = new THREE.MeshPhongMaterial({ 
+                map: leafTexture,       // Sử dụng hình ảnh đã tải
+                color: 0xffffff,        // Màu trắng để texture hiển thị đúng màu
+                side: THREE.DoubleSide, // Vẽ cả 2 mặt của lá
+                transparent: true       // Cho phép hiển thị phần trong suốt của ảnh PNG
+            });
+
+            for (let i = 0; i < leafCount; i++) {
+                const leaf = new THREE.Mesh(leafGeometry, leafMaterial);
+
+                // Đặt vị trí ngẫu nhiên cho lá
+                leaf.position.set(
+                    (Math.random() - 0.5) * 40, // Phân bổ theo chiều X
+                    (Math.random() * 20) + 10,  // Phân bổ bên trên màn hình (Y)
+                    (Math.random() - 0.5) * 40  // Phân bổ theo chiều Z (chiều sâu)
+                );
+
+                // Đặt góc xoay ngẫu nhiên ban đầu
+                leaf.rotation.set(
+                    Math.random() * Math.PI * 2,
+                    Math.random() * Math.PI * 2,
+                    Math.random() * Math.PI * 2
+                );
+
+                // Lưu trữ tốc độ rơi và xoay riêng cho mỗi lá
+                leaf.userData = {
+                    spinX: (Math.random() - 0.5) * 0.03,
+                    spinY: (Math.random() - 0.5) * 0.03,
+                    spinZ: (Math.random() - 0.5) * 0.03,
+                    fallSpeed: 0.03 + Math.random() * 0.03, // Tốc độ rơi
+                    drift: (Math.random() - 0.5) * 0.01 // Độ trôi dạt cá nhân
+                };
+
+                leaves.push(leaf);
+                scene.add(leaf);
+            }
+
+            // Thêm sự kiện resize cửa sổ
+            window.addEventListener('resize', onWindowResize, false);
+
+            // Bắt đầu vòng lặp
+            animate();
+        }
+
+        // Hàm xử lý khi thay đổi kích thước cửa sổ
+        function onWindowResize() {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        }
+
+        // Vòng lặp
+        function animate() {
+            requestAnimationFrame(animate); // Gọi lại chính nó ở khung hình tiếp theo
+
+            const time = Date.now() * 0.0001; // Yếu tố thời gian để tạo gió
+
+            // Tính toán lực gió chung
+            const windX = Math.sin(time) * 0.02;
+            const windZ = Math.cos(time * 0.7) * 0.01; // Gió thổi theo chiều sâu
+
+            // Cập nhật từng chiếc lá
+            leaves.forEach(leaf => {
+                // 1. Rơi xuống (giảm trục Y)
+                leaf.position.y -= leaf.userData.fallSpeed;
+
+                // 2. Thêm lực gió + độ trôi dạt riêng
+                leaf.position.x += windX + leaf.userData.drift;
+                leaf.position.z += windZ;
+
+                // 3. Xoay lá
+                leaf.rotation.x += leaf.userData.spinX;
+                leaf.rotation.y += leaf.userData.spinY;
+                leaf.rotation.z += leaf.userData.spinZ;
+
+                // 4. Tái chế lá khi rơi ra khỏi màn hình
+                if (leaf.position.y < -10) {
+                    // Đặt lại vị trí Y lên trên cùng
+                    leaf.position.y = 20;
+                    // Đặt lại vị trí X và Z ngẫu nhiên
+                    leaf.position.x = (Math.random() - 0.5) * 40;
+                    leaf.position.z = (Math.random() - 0.5) * 40;
+                }
+            });
+
+            // Kết xuất cảnh
+            renderer.render(scene, camera);
+        }
+
+        // Chạy hàm khởi tạo
+        init();
     </script>
+    <!-- KẾT THÚC: Script cho hiệu ứng lá rơi 3D -->
     </body>
 </html>
