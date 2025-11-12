@@ -3,18 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tên Spa Của Bạn - Dịch Vụ Thư Giãn Chuyên Nghiệp</title>
+    <title>Lam Trúc Spa - Trị liệu Đông Y Dưỡng Sinh</title>
     
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     
-    <link rel="stylesheet" href="style.css?v=1.0.1">
+    <link rel="stylesheet" href="style.css?v=1.0.0">
 
     <style>
         body::before {
-            /* THAY THẾ: Đường dẫn ảnh nền của bạn */
-            background-image: url('https://placehold.co/1920x1080/dcfce7/14532d?text=Ảnh+Nền+Của+Bạn');
+            /* Đường dẫn tương đối đến ảnh nền */
+            background-image: url('uploads/1762791269-lush-trees-green-bamboo-tree-a-captivating-background-texture_9943528.jpg');
         }
     </style>
 </head>
@@ -22,18 +22,40 @@
 
     <div id="leaf-container"></div>
     
+    <div style="position: fixed; bottom: 1.5rem; left: 1.5rem; z-index: 50;">
+            <audio controls autoplay loop style="width: 250px; height: 40px;">
+                <source src="uploads/1762791269-nhacnen.mp3" type="audio/mpeg">
+                Trình duyệt của bạn không hỗ trợ phát âm thanh.
+            </audio>
+        </div>
+    
     <div class="fab-container">
         <div class="fab-links">
-            <a href="https://m.me/TEN-TRANG-CUA-BAN" target="_blank" class="fab-link" title="Nhắn tin Messenger" style="background-color: #00B2FF;">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Facebook_Messenger_logo_2020.svg/512px-Facebook_Messenger_logo_2020.svg.png" alt="Messenger" style="width: 24px; height: 24px;">
-            </a>
-            <a href="https://zalo.me/SO-DIEN-THOAI-ZALO" target="_blank" class="fab-link" title="Chat Zalo" style="background-color: #0068FF;">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Icon_of_Zalo.svg/512px-Icon_of_Zalo.svg.png" alt="Zalo" style="width: 24px; height: 24px;">
-            </a>
-            <a href="tel:090xxxxxxx" class="fab-link" title="Gọi ngay" style="background-color: #10B981;">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
-            </a>
-        </div>
+                            <a href="https://m.me/phanthi.ngocduy" 
+                   target="_blank" 
+                   rel="noopener noreferrer" 
+                   class="fab-link" 
+                   title="Nhắn tin Messenger"
+                   style="background-color: #FFFFFF;">
+                                            <img src="uploads/1762820974-hd-official-new-facebook-messenger-icon-logo-png-701751694787819hlhkutzsan.png" alt="Nhắn tin Messenger">
+                                    </a>
+                            <a href="https://zalo.me/0388989732" 
+                   target="_blank" 
+                   rel="noopener noreferrer" 
+                   class="fab-link" 
+                   title="Chat Zalo"
+                   style="background-color: #FFFFFF;">
+                                            <img src="uploads/1762820974-Logo-zalo-png.png" alt="Chat Zalo">
+                                    </a>
+                            <a href="tel:0388989732" 
+                   target="_blank" 
+                   rel="noopener noreferrer" 
+                   class="fab-link" 
+                   title="Gọi ngay"
+                   style="background-color: #FFFFFF;">
+                                            <img src="uploads/1762820974-png-clipart-call-icon-telephone-call-prank-call-email-iphone-telefono-miscellaneous-text-thumbnail.png" alt="Gọi ngay">
+                                    </a>
+                    </div>
         <div class="fab-toggle">
             <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"></path></svg>
         </div>
@@ -42,11 +64,11 @@
     <header class="bg-transparent absolute top-0 left-0 w-full z-10 py-6 px-4 md:px-8">
         <div class="container mx-auto flex justify-between items-center max-w-6xl">
             <a href="index.html" class="text-3xl font-extrabold text-green-900">
-                Tên Spa
+                Xin Chào!
             </a>
             <nav>
-                <a href="#contact" class="text-sm font-medium text-gray-700 hover:text-green-900 bg-white/50 backdrop-blur-sm shadow-sm hover:bg-white px-4 py-2 rounded-md transition-colors">
-                    Liên Hệ
+                <a href="#" class="text-sm font-medium text-gray-700 hover:text-green-900 bg-white/50 backdrop-blur-sm shadow-sm hover:bg-white px-4 py-2 rounded-md transition-colors" onclick="alert('Trang quản trị không hoạt động trên phiên bản tĩnh này.'); return false;">
+                    Đăng nhập
                 </a>
             </nav>
         </div>
@@ -59,12 +81,10 @@
             
             <div class="container mx-auto max-w-4xl text-center relative z-10">
                 <h1 class="text-5xl md:text-7xl font-extrabold mb-6 leading-tight text-green-900">
-                    Thư Giãn & Tái Tạo
-                </h1>
+                    Lam Trúc Spa                </h1>
                 <p class="text-xl md:text-2xl text-gray-700 max-w-2xl mx-auto">
-                    Trải nghiệm dịch vụ chăm sóc sức khỏe và sắc đẹp hàng đầu.
-                </p>
-                <a href="#menu" class="cta-button">Xem Dịch Vụ</a>
+                    Lam Trúc nhẹ ru gió, Hương trúc quyện hồn hoa. Dưỡng sinh từ tâm tĩnh, Thân khỏe, mộng an hòa.                </p>
+                <a href="tel:0388989732" class="cta-button">Gọi ngay để được tư vấn, sắp lịch</a>
             </div>
         </section>
 
@@ -72,16 +92,25 @@
             <div class="container mx-auto max-w-6xl">
                 <div class="swiper mySwiper">
                     <div class="swiper-wrapper">
-                        <div class="swiper-slide">
-                            <img src="https://placehold.co/1200x600/a7f3d0/14532d?text=Ảnh+Slider+1" alt="Slider Image 1">
+                                                <div class="swiper-slide">
+                            <img src="uploads/1762793899-1.jpg" alt="Slider Image" onerror="this.onerror=null; this.src='https://placehold.co/1200x600/eeeeee/aaaaaa?text=Image+Error';">
                         </div>
-                        <div class="swiper-slide">
-                            <img src="https://placehold.co/1200x600/6ee7b7/14532d?text=Ảnh+Slider+2" alt="Slider Image 2">
+                                                <div class="swiper-slide">
+                            <img src="uploads/1762819462-2.jpg" alt="Slider Image" onerror="this.onerror=null; this.src='https://placehold.co/1200x600/eeeeee/aaaaaa?text=Image+Error';">
                         </div>
-                        <div class="swiper-slide">
-                            <img src="https://placehold.co/1200x600/34d399/14532d?text=Ảnh+Slider+3" alt="Slider Image 3">
+                                                <div class="swiper-slide">
+                            <img src="uploads/1762819484-download17.jpg" alt="Slider Image" onerror="this.onerror=null; this.src='https://placehold.co/1200x600/eeeeee/aaaaaa?text=Image+Error';">
                         </div>
-                    </div>
+                                                <div class="swiper-slide">
+                            <img src="uploads/1762819502-IMG_20240730_142148.jpg" alt="Slider Image" onerror="this.onerror=null; this.src='https://placehold.co/1200x600/eeeeee/aaaaaa?text=Image+Error';">
+                        </div>
+                                                <div class="swiper-slide">
+                            <img src="uploads/1762819517-IMG_20230927_123226.jpg" alt="Slider Image" onerror="this.onerror=null; this.src='https://placehold.co/1200x600/eeeeee/aaaaaa?text=Image+Error';">
+                        </div>
+                                                <div class="swiper-slide">
+                            <img src="uploads/1762819851-download_17215510408211.jpg" alt="Slider Image" onerror="this.onerror=null; this.src='https://placehold.co/1200x600/eeeeee/aaaaaa?text=Image+Error';">
+                        </div>
+                                        </div>
                     <div class="swiper-pagination"></div>
                     <div class="swiper-button-next"></div>
                     <div class="swiper-button-prev"></div>
@@ -92,87 +121,139 @@
         <section class="py-20 md:py-32 px-4 md:px-8 bg-white shadow-lg" id="about">
             <div class="container mx-auto max-w-4xl">
                 <h2 class="text-4xl md:text-5xl font-extrabold text-center mb-12 text-green-900">
-                    Về Chúng Tôi
-                </h2>
+                    Chăm Sóc Sức Khỏe Từ Tâm tại Lam Trúc Spa                </h2>
                 <p class="text-lg md:text-xl text-gray-700 leading-relaxed text-center max-w-3xl mx-auto">
-                    Nội dung giới thiệu về spa của bạn. Viết một vài đoạn văn mô tả sứ mệnh, giá trị và điều làm nên sự đặc biệt của spa. Chúng tôi cam kết mang đến...
-                </p>
+                    Bạn đang mệt mỏi? Căng thẳng vì đau đầu, mất ngủ? Hay phiền muộn vì các chứng đau mỏi, cổ vai gáy, đau lưng và tê tay tê chân?<br />
+<br />
+Hãy đến với Lam Trúc Spa!<br />
+<br />
+Chúng tôi không chỉ mang đến trải nghiệm thư giãn tuyệt vời với gội đầu dưỡng sinh, mà còn cung cấp các liệu pháp trị liệu chuyên sâu, hỗ trợ các vấn đề sức khỏe như rối loạn tiền đình, viêm xoang, giải độc gan và làm ấm phụ khoa.<br />
+<br />
+Lam Trúc Spa – Nơi sức khỏe của bạn là ưu tiên hàng đầu. Hãy đặt lịch hẹn ngay hôm nay để cảm nhận sự khác biệt!                </p>
             </div>
         </section>
         
-        <section class="py-20 md:py-32 px-4 md:px-8" id="menu">
+        <section class="py-20 md:py-32 px-4 md:px8" id="menu">
             <div class="container mx-auto max-w-4xl">
                 <h2 class="text-4xl md:text-5xl font-extrabold text-center mb-16 text-green-900">
-                    Bảng Dịch Vụ
-                </h2>
+                    Bảng giá Dịch vụ Trị liệu                </h2>
                 
                 <div class="space-y-8">
-                    <div class="bg-white p-6 rounded-lg border border-gray-200 shadow-lg transition-all hover:shadow-xl service-modal-trigger"
-                         data-name="Dịch Vụ Massage Thảo Dược"
+                                        <div class="bg-white p-6 rounded-lg border border-gray-200 shadow-lg transition-all hover:shadow-xl service-modal-trigger"
+                         data-name="Trị liệu Cổ Vai Gáy"
                          data-duration="60 phút"
-                         data-price="350.000đ"
-                         data-desc="Mô tả chi tiết về dịch vụ massage thảo dược. Sử dụng các loại thảo dược tự nhiên...<br><br>Giúp thư giãn cơ bắp, đả thông kinh lạc." 
-                         data-image="https://placehold.co/800x600/a7f3d0/14532d?text=Ảnh+Dịch+Vụ+1"
+                         data-price="199.000đ"
+                         data-desc="Đả thông kinh lạc, làm mềm cơ, giảm đau mỏi vùng cổ, vai, gáy, có gói trải nghiệm: 30 phút 129.000đ" 
+                         data-image="uploads/1762821437-download17.jpg"
                          data-video="">
                         
-                        <img src="https://placehold.co/800x600/a7f3d0/14532d?text=Ảnh+Dịch+Vụ+1" 
-                             alt="Dịch Vụ 1" 
+                        <img src="uploads/1762821437-download17.jpg" 
+                             alt="Trị liệu Cổ Vai Gáy" 
                              class="w-full h-64 object-cover rounded-lg mb-4 border border-gray-200 cursor-zoom-in zoomable" 
                              onerror="this.onerror=null; this.src='https://placehold.co/600x400/eeeeee/aaaaaa?text=Image+Error';">
-
+                        
                         <div class="flex flex-col sm:flex-row justify-between sm:items-center mb-2">
-                            <h3 class="text-2xl font-bold text-green-800">Dịch Vụ Massage Thảo Dược</h3>
+                            <h3 class="text-2xl font-bold text-green-800">Trị liệu Cổ Vai Gáy</h3>
                             <div class="flex-shrink-0 mt-2 sm:mt-0">
                                 <span class="text-lg font-medium text-gray-600">60 phút</span>
                                 <span class="mx-2 text-gray-400">|</span>
-                                <span class="text-xl font-bold text-green-700">350.000đ</span>
+                                <span class="text-xl font-bold text-green-700">199.000đ</span>
                             </div>
                         </div>
                         <p class="text-gray-600">
-                            Mô tả ngắn gọn về dịch vụ massage thảo dược.
-                        </p>
+                            Đả thông kinh lạc, làm mềm cơ, giảm đau mỏi vùng cổ, vai, gáy, có gói trải nghiệm: 30 phút 129.000đ                        </p>
                     </div>
-
-                    <div class="bg-white p-6 rounded-lg border border-gray-200 shadow-lg transition-all hover:shadow-xl service-modal-trigger"
-                         data-name="Gội Đầu Dưỡng Sinh"
-                         data-duration="75 phút"
-                         data-price="400.000đ"
-                         data-desc="Mô tả chi tiết về gội đầu dưỡng sinh. Kết hợp massage cổ vai gáy..."
-                         data-image=""
-                         data-video="https://www.youtube.com/watch?v=wLacTN7xXCw"> <div class="w-full aspect-video rounded-lg mb-4 overflow-hidden border border-gray-200 pointer-events-none">
-                            <iframe class="w-full h-full" src="https://www.youtube.com/embed/wLacTN7xXCw" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                        </div>
-
+                                        <div class="bg-white p-6 rounded-lg border border-gray-200 shadow-lg transition-all hover:shadow-xl service-modal-trigger"
+                         data-name="Trị Liệu Đau Lưng"
+                         data-duration="60 phút"
+                         data-price="199.000đ"
+                         data-desc="" 
+                         data-image="uploads/1762822053-IMG_20251011_143330.jpg"
+                         data-video="">
+                        
+                        <img src="uploads/1762822053-IMG_20251011_143330.jpg" 
+                             alt="Trị Liệu Đau Lưng" 
+                             class="w-full h-64 object-cover rounded-lg mb-4 border border-gray-200 cursor-zoom-in zoomable" 
+                             onerror="this.onerror=null; this.src='https://placehold.co/600x400/eeeeee/aaaaaa?text=Image+Error';">
+                        
                         <div class="flex flex-col sm:flex-row justify-between sm:items-center mb-2">
-                            <h3 class="text-2xl font-bold text-green-800">Gội Đầu Dưỡng Sinh</h3>
+                            <h3 class="text-2xl font-bold text-green-800">Trị Liệu Đau Lưng</h3>
                             <div class="flex-shrink-0 mt-2 sm:mt-0">
-                                <span class="text-lg font-medium text-gray-600">75 phút</span>
+                                <span class="text-lg font-medium text-gray-600">60 phút</span>
                                 <span class="mx-2 text-gray-400">|</span>
-                                <span class="text-xl font-bold text-green-700">400.000đ</span>
+                                <span class="text-xl font-bold text-green-700">199.000đ</span>
                             </div>
                         </div>
                         <p class="text-gray-600">
-                            Mô tả ngắn về gội đầu dưỡng sinh.
-                        </p>
+                                                    </p>
                     </div>
-
+                                        <div class="bg-white p-6 rounded-lg border border-gray-200 shadow-lg transition-all hover:shadow-xl service-modal-trigger"
+                         data-name="Trị Liệu Chân "
+                         data-duration="60 phút"
+                         data-price="199.000đ"
+                         data-desc="" 
+                         data-image="uploads/1762821982-IMG_20250820_223037.jpg"
+                         data-video="">
+                        
+                        <img src="uploads/1762821982-IMG_20250820_223037.jpg" 
+                             alt="Trị Liệu Chân " 
+                             class="w-full h-64 object-cover rounded-lg mb-4 border border-gray-200 cursor-zoom-in zoomable" 
+                             onerror="this.onerror=null; this.src='https://placehold.co/600x400/eeeeee/aaaaaa?text=Image+Error';">
+                        
+                        <div class="flex flex-col sm:flex-row justify-between sm:items-center mb-2">
+                            <h3 class="text-2xl font-bold text-green-800">Trị Liệu Chân </h3>
+                            <div class="flex-shrink-0 mt-2 sm:mt-0">
+                                <span class="text-lg font-medium text-gray-600">60 phút</span>
+                                <span class="mx-2 text-gray-400">|</span>
+                                <span class="text-xl font-bold text-green-700">199.000đ</span>
+                            </div>
+                        </div>
+                        <p class="text-gray-600">
+                                                    </p>
                     </div>
+                                        <div class="bg-white p-6 rounded-lg border border-gray-200 shadow-lg transition-all hover:shadow-xl service-modal-trigger"
+                         data-name="Trị Liệu Tỳ Vị: Giải Pháp Vàng Cho Hệ Tiêu Hóa Khỏe Mạnh"
+                         data-duration="60 phút"
+                         data-price="249.000đ"
+                         data-desc="Bạn thường xuyên bị đau bao tử, đầy hơi, chướng bụng, ợ chua hay khó tiêu? Đây là dấu hiệu Tỳ Vị (Hệ tiêu hóa) của bạn đang &quot;kêu cứu&quot; do căng thẳng và thói quen ăn uống hiện đại. Liệu pháp Trị Liệu Tỳ Vị là giải pháp massage, ấn huyệt chuyên sâu vào vùng bụng để &quot;chữa lành&quot; hệ tiêu hóa của bạn." 
+                         data-image="uploads/1762822220-IMG_20250820_222719.jpg"
+                         data-video="">
+                        
+                        <img src="uploads/1762822220-IMG_20250820_222719.jpg" 
+                             alt="Trị Liệu Tỳ Vị: Giải Pháp Vàng Cho Hệ Tiêu Hóa Khỏe Mạnh" 
+                             class="w-full h-64 object-cover rounded-lg mb-4 border border-gray-200 cursor-zoom-in zoomable" 
+                             onerror="this.onerror=null; this.src='https://placehold.co/600x400/eeeeee/aaaaaa?text=Image+Error';">
+                        
+                        <div class="flex flex-col sm:flex-row justify-between sm:items-center mb-2">
+                            <h3 class="text-2xl font-bold text-green-800">Trị Liệu Tỳ Vị: Giải Pháp Vàng Cho Hệ Tiêu Hóa Khỏe Mạnh</h3>
+                            <div class="flex-shrink-0 mt-2 sm:mt-0">
+                                <span class="text-lg font-medium text-gray-600">60 phút</span>
+                                <span class="mx-2 text-gray-400">|</span>
+                                <span class="text-xl font-bold text-green-700">249.000đ</span>
+                            </div>
+                        </div>
+                        <p class="text-gray-600">
+                            Bạn thường xuyên bị đau bao tử, đầy hơi, chướng bụng, ợ chua hay khó tiêu? Đây là dấu hiệu Tỳ Vị (Hệ tiêu hóa) của bạn đang "kêu cứu" do căng thẳng và thói quen ăn uống hiện đại. Liệu pháp Trị Liệu Tỳ Vị là giải pháp massage, ấn huyệt chuyên sâu vào vùng bụng để "chữa lành" hệ tiêu hóa của bạn.                        </p>
+                    </div>
+                                    </div>
             </div>
         </section>
 
         <section class="py-20 md:py-32 px-4 md:px-8 bg-green-50/70 backdrop-blur-sm" id="testimonials">
             <div class="container mx-auto max-w-4xl">
                 <h2 class="text-4xl md:text-5xl font-extrabold text-center mb-16 text-green-900">
-                    Khách Hàng Nói Gì
-                </h2>
+                    Khách hàng Nói về Chúng tôi                </h2>
                 
                 <div class="bg-white p-6 md:p-8 rounded-lg border border-gray-200 shadow-xl mb-16">
                     <h3 class="text-2xl font-bold text-green-800 mb-6">Gửi đánh giá của bạn</h3>
-                    <form action="#testimonials" method="POST" onsubmit="alert('Chức năng này không hoạt động trên phiên bản tĩnh. Vui lòng liên hệ qua Zalo hoặc Messenger.'); return false;" class="space-y-4">
+                    
+                    <form action="#testimonials" method="POST" onsubmit="alert('Chức năng này không hoạt động trên phiên bản GitHub Pages. Vui lòng liên hệ qua Zalo hoặc Messenger.'); return false;" class="space-y-4">
+                        <input type="hidden" name="action" value="submit_review">
                         <div>
                             <label for="review_name" class="review-label">Tên của bạn</label>
-                            <input type="text" id="review_name" name="review_name" class="review-input" placeholder="Tên của bạn">
+                            <input type="text" id="review_name" name="review_name" class="review-input" placeholder="Tên của bạn (ví dụ: Chị An Nhiên)">
                         </div>
+                        
                         <div>
                             <span class="star-rating-label-text">Bạn đánh giá thế nào?</span>
                             <div class="star-rating">
@@ -183,9 +264,14 @@
                                 <input type="radio" id="1-star" name="review_rating" value="1" /><label for="1-star" title="1 sao">★</label>
                             </div>
                         </div>
+                        
                         <div>
                             <label for="review_text" class="review-label">Nội dung đánh giá</label>
                             <textarea id="review_text" name="review_text" class="review-textarea" placeholder="Dịch vụ ở đây thật tuyệt vời..." required></textarea>
+                        </div>
+                        <div>
+                            <label for="review_image" class="review-label">Đính kèm ảnh (Tùy chọn, có thể chọn nhiều ảnh)</label>
+                            <input type="file" id="review_image" name="review_images[]" class="review-input review-file-input" accept="image/png, image/jpeg, image/gif" multiple>
                         </div>
                         <div>
                             <button type="submit" class="cta-button !px-8 !py-3 !mt-2">
@@ -198,80 +284,63 @@
                 <h3 class="text-3xl font-bold text-green-900 mb-12 text-center">Các đánh giá gần đây</h3>
                 
                 <div class="space-y-8">
-                    <div class="bg-white p-6 md:p-8 rounded-lg border border-gray-200 shadow-lg flex flex-col sm:flex-row gap-6">
+                                        <div class="bg-white p-6 md:p-8 rounded-lg border border-gray-200 shadow-lg flex flex-col sm:flex-row gap-6">
                         <div class="flex-shrink-0 text-center sm:text-left">
-                            <img src="https://placehold.co/100x100/e0e7ff/4338ca?text=User" 
-                                 alt="Tên Khách Hàng" 
-                                 class="w-24 h-24 rounded-full mx-auto sm:mx-0 mb-4 border-4 border-green-200 shadow-lg object-cover cursor-zoom-in zoomable">
+                            <img src="uploads/1762794997-five-star-eco-city1422075753_1425978275.jpg" 
+                                 alt="Lợi" 
+                                 class="w-24 h-24 rounded-full mx-auto sm:mx-0 mb-4 border-4 border-green-200 shadow-lg object-cover cursor-zoom-in zoomable"
+                                 onerror="this.onerror=null; this.src='https://placehold.co/100x100/e0e7ff/4338ca?text=User';">
                             <h4 class="text-xl font-bold text-green-800">
-                                Chị An Nhiên
-                            </h4>
+                                Lợi                            </h4>
                             <p class="text-sm text-gray-500">
-                                10/11/2025
-                            </p>
+                                11/11/2025 </p>
                         </div>
                         <div class="flex-grow">
-                            <div class="flex items-center mb-2" title="5 sao"><svg class="w-5 h-5 text-yellow-500" fill="currentColor" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 7.01l6.572-.955L10 0l2.939 6.055 6.572.955-4.756 4.535 1.123 6.545L10 15z"/></svg><svg class="w-5 h-5 text-yellow-500" fill="currentColor" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 7.01l6.572-.955L10 0l2.939 6.055 6.572.955-4.756 4.535 1.123 6.545L10 15z"/></svg><svg class="w-5 h-5 text-yellow-500" fill="currentColor" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 7.01l6.572-.955L10 0l2.939 6.055 6.572.955-4.756 4.535 1.123 6.545L10 15z"/></svg><svg class="w-5 h-5 text-yellow-500" fill="currentColor" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 7.01l6.572-.955L10 0l2.939 6.055 6.572.955-4.756 4.535 1.123 6.545L10 15z"/></svg><svg class="w-5 h-5 text-yellow-500" fill="currentColor" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 7.01l6.572-.955L10 0l2.939 6.055 6.572.955-4.756 4.535 1.123 6.545L10 15z"/></svg></div>
-                            
+                            <div class="flex items-center mb-2" title="5 sao"><svg class="w-5 h-5 text-yellow-500" fill="currentColor" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 7.01l6.572-.955L10 0l2.939 6.055 6.572.955-4.756 4.535 1.123 6.545L10 15z"></svg><svg class="w-5 h-5 text-yellow-500" fill="currentColor" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 7.01l6.572-.955L10 0l2.939 6.055 6.572.955-4.756 4.535 1.123 6.545L10 15z"></svg><svg class="w-5 h-5 text-yellow-500" fill="currentColor" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 7.01l6.572-.955L10 0l2.939 6.055 6.572.955-4.756 4.535 1.123 6.545L10 15z"></svg><svg class="w-5 h-5 text-yellow-500" fill="currentColor" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 7.01l6.572-.955L10 0l2.939 6.055 6.572.955-4.756 4.535 1.123 6.545L10 15z"></svg><svg class="w-5 h-5 text-yellow-500" fill="currentColor" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 7.01l6.572-.955L10 0l2.939 6.055 6.572.955-4.756 4.535 1.123 6.545L10 15z"></svg></div>                            
                             <p class="text-lg text-gray-700 italic leading-relaxed">
-                                "Nội dung đánh giá của khách hàng. Dịch vụ rất tuyệt vời, nhân viên nhiệt tình, không gian thư giãn. Tôi sẽ quay lại."
+                                "Tuyệt vời"
                             </p>
                             
                             <div class="flex flex-wrap gap-2 mt-4">
-                                <img src="https://placehold.co/80x80/a7f3d0/14532d?text=Ảnh" 
-                                     class="w-20 h-20 rounded-md object-cover border border-gray-300 hover:opacity-75 transition-opacity cursor-zoom-in zoomable">
+                                <img src="uploads/1762794997-five-star-eco-city1422075753_1425978275.jpg" 
+                                     class="w-20 h-20 rounded-md object-cover border border-gray-300 hover:opacity-75 transition-opacity cursor-zoom-in zoomable"
+                                     loading="lazy"
+                                     onerror="this.onerror=null; this.src='https://placehold.co/80x80/eeeeee/aaaaaa?text=Lỗi';">
                             </div>
                         </div>
                     </div>
-                    </div>
+                                    </div>
             </div>
         </section>
 
         <section class="py-20 md:py-32 px-4 md:px-8 bg-white shadow-lg" id="philosophy">
             <div class="container mx-auto max-w-4xl text-center">
                 <h2 class="text-4xl md:text-5xl font-extrabold mb-12 text-green-900">
-                    Triết Lý Của Chúng Tôi
-                </h2>
+                    Giải Pháp Trị Liệu Của Chúng Tôi                </h2>
                 <p class="text-lg md:text-xl text-gray-700 leading-relaxed max-w-3xl mx-auto">
-                    Nội dung về triết lý, phương pháp hoặc cam kết của spa. Chúng tôi tin rằng vẻ đẹp...
-                </p>
+                    Chấm Dứt Đau Mỏi Cổ Vai Gáy, Tê Bì Chân Tay Với Liệu Pháp Cổ Truyền<br />
+<br />
+Tại sao bạn đau mỏi mãi không dứt? Đó là vì "kinh lạc" bị tắc nghẽn và độc tố đang tích tụ!<br />
+<br />
+Tại Lam Trúc Spa, chúng tôi giải quyết vấn đề này bằng một combo trị liệu chuyên sâu:<br />
+<br />
+Xoa bóp Bấm huyệt: "Mở khóa" các điểm đau, làm mềm cơ đang co cứng.<br />
+<br />
+Massage Đả thông Kinh lạc: Khai thông dòng chảy khí huyết, giúp cơ thể tự cân bằng, hết tê bì, mệt mỏi.<br />
+<br />
+Đắp thuốc Bài độc: Dùng thảo dược ấm nóng để "hút" sạch hàn khí và độc tố ra ngoài, giúp giảm sưng viêm và thư giãn tối đa.<br />
+<br />
+👉 Trải nghiệm ngay liệu pháp "3 trong 1" độc đáo này để cảm nhận cơ thể nhẹ bẫng, sảng khoái và nói "không" với đau nhức!                </p>
             </div>
         </section>
 
         <section class="py-20 md:py-32 px-4 md:px-8" id="blog">
             <div class="container mx-auto max-w-6xl">
                 <h2 class="text-4xl md:text-5xl font-extrabold text-center mb-16 text-green-900">
-                    Tin Tức & Khuyến Mãi
-                </h2>
+                    Tin tức & Khuyến mãi                </h2>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <div class="blog-card">
-                        <img src="https://placehold.co/600x400/dcfce7/14532d?text=Ảnh+Blog+1" 
-                             alt="Tiêu đề bài viết" 
-                             class="blog-image cursor-zoom-in zoomable">
-                        <div class="blog-content">
-                            <h3 class="blog-title">Khuyến mãi mới tháng 12</h3>
-                            <p class="blog-date">Đăng ngày: 11/11/2025</p>
-                            <p class="blog-excerpt">
-                                Nội dung tóm tắt cho bài viết blog hoặc tin khuyến mãi. Nhấn vào đây để xem chi tiết...
-                            </p>
-                        </div>
-                    </div>
-                    
-                    <div class="blog-card">
-                        <img src="https://placehold.co/600x400/dcfce7/14532d?text=Ảnh+Blog+2" 
-                             alt="Tiêu đề bài viết 2" 
-                             class="blog-image cursor-zoom-in zoomable">
-                        <div class="blog-content">
-                            <h3 class="blog-title">Mẹo Chăm Sóc Da Mùa Đông</h3>
-                            <p class="blog-date">Đăng ngày: 10/11/2025</p>
-                            <p class="blog-excerpt">
-                                Một số mẹo nhỏ giúp bạn giữ gìn làn da...
-                            </p>
-                        </div>
-                    </div>
-
-                </div>
+                    <p class="text-gray-500 text-center md:col-span-2 lg:col-span-3">Chưa có tin tức hay khuyến mãi nào. Vui lòng quay lại sau!</p>                </div>
             </div>
         </section>
 
@@ -280,50 +349,47 @@
                 <div class="absolute inset-0 w-full h-full bg-green-300 rounded-full filter blur-3xl opacity-30"></div>
                 <div class="relative z-10">
                     <h2 class="text-4xl md:text-5xl font-extrabold mb-6 text-green-900">
-                        Đặt Lịch Hẹn Ngay Hôm Nay
-                    </h2>
+                        Gọi ngay để được tư vấn, sắp lịch                    </h2>
                     <p class="text-xl md:text-2xl text-gray-700 max-w-2xl mx-auto">
-                        Hãy để chúng tôi chăm sóc bạn.
-                    </p>
-                    <a href="tel:090xxxxxxx" class="cta-button">Gọi Ngay: 090x.xxx.xxx</a>
+                        Hãy để chúng tôi đồng hành cùng bạn trên con đường tìm lại sức khỏe và sự bình yên trong tâm hồn.                    </p>
+                    <a href="tel:0388989732" class="cta-button">Gọi ngay để được tư vấn, sắp lịch</a>
                 </div>
             </div>
+        </section>
+
+        <section class="py-20 md:py-32 px-4 md:px-8" id="html-modules">
+            <div class="container mx-auto max-w-4xl">
+                                </div>
         </section>
 
         <section class="py-20 md:py-32 px-4 md:px-8 bg-white shadow-lg" id="contact">
             <div class="container mx-auto max-w-4xl text-center">
                 <h2 class="text-4xl md:text-5xl font-extrabold mb-12 text-green-900">
-                    Liên Hệ & Địa Chỉ
-                </h2>
+                    Liên hệ & Địa chỉ                </h2>
                 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-left">
                     <div class="space-y-6">
                         <div>
                             <h3 class="text-lg font-semibold text-gray-500 uppercase tracking-wider">Địa chỉ</h3>
                             <p class="text-xl text-green-800">
-                                123 Đường ABC, Phường XYZ, Quận 1, TP. HCM
-                            </p>
+                                243/3 Ấp Bình Sơn, Xã Vĩnh Công, Tỉnh Tây Ninh.                            </p>
                         </div>
                         
                         <div>
                             <h3 class="text-lg font-semibold text-gray-500 uppercase tracking-wider">Gọi cho chúng tôi</h3>
-                            <a href="tel:090xxxxxxx" class="text-xl text-green-800 hover:text-green-600 transition-colors">
-                                090x.xxx.xxx
-                            </a>
+                            <a href="tel:0388989732" class="text-xl text-green-800 hover:text-green-600 transition-colors">
+                                0388989732                            </a>
                         </div>
                         <div>
                             <h3 class="text-lg font-semibold text-gray-500 uppercase tracking-wider">Chat với chúng tôi</h3>
                             <div class="flex space-x-4 mt-2">
-                                <a href="#" class="text-xl text-green-800 hover:text-green-600 transition-colors">Zalo</a>
-                                <a href="#" class="text-xl text-green-800 hover:text-green-600 transition-colors">Messenger</a>
+                                <a href="https://zalo.me/0388989732" target="_blank" rel="noopener noreferrer" class="text-xl text-green-800 hover:text-green-600 transition-colors">Zalo</a>
+                                <a href="https://m.me/phanthi.ngocduy" target="_blank" rel="noopener noreferrer" class="text-xl text-green-800 hover:text-green-600 transition-colors">Messenger</a>
                             </div>
                         </div>
                         </div>
                     <div>
-                        <div class="w-full h-[300px] bg-gray-200 rounded-lg flex items-center justify-center text-gray-500">
-                            Bản đồ Google Maps
-                        </div>
-                    </div>
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d583.116875226062!2d106.45751464655554!3d10.52214571219001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x310ab5acafe0c7f5%3A0x1e8141d31ba27ddd!2sLam%20Tr%C3%BAc%20Spa!5e0!3m2!1svi!2s!4v1762793652101!5m2!1svi!2s" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" class="rounded-lg border border-gray-200"></iframe>                    </div>
                 </div>
             </div>
         </section>
@@ -331,9 +397,9 @@
 
     <footer class="py-12 bg-transparent border-t border-gray-200/80">
         <div class="container mx-auto max-w-6xl text-center text-gray-600">
-            <p class="font-bold text-lg text-green-900 mb-2">Tên Spa</p>
-            <p>Hotline: <a href="tel:090xxxxxxx">090x.xxx.xxx</a></p>
-            <p class="mt-4">© 2025 Tên Spa Của Bạn. </p>
+            <p class="font-bold text-lg text-green-900 mb-2">Lam Trúc Spa</p>
+            <p>Hotline: <a href="tel:0388989732">0388989732</a></p>
+            <p class="mt-4">© 2025 Lam Trúc Spa. Tạo bởi Nguyễn Hoàng Lợi.</p>
         </div>
     </footer>
     
@@ -357,12 +423,12 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <script src="script.js?v=1.0.1" defer></script>
+
+    <script src="script.js?v=1.0.0" defer></script>
 
     <script>
-        // THAY THẾ: Đường dẫn ảnh lá rơi (nếu muốn)
-        // Bỏ trống '' nếu không muốn có hiệu ứng
-        window.fallingLeafImageUrl = 'uploads/anh-la-roi.png'; 
+        // Đường dẫn tương đối đến ảnh lá rơi
+        window.fallingLeafImageUrl = 'uploads/1762791269-8325571.png';
     </script>
     </body>
 </html>
