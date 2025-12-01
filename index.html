@@ -3,53 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lam Trúc Spa - Trị Liệu Dưỡng Sinh Đông Y</title>
-    
+    <title>Lam Trúc Spa - Trị liệu Đông Y Dưỡng Sinh</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-    
-    <link rel="stylesheet" href="style.css?v=1.0.1">
-
-    <!-- Tải thư viện three.js cho hiệu ứng 3D -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-
-    <style>
-        body::before {
-            /* THAY THẾ: Đường dẫn ảnh nền của bạn */
-            /* Thay ảnh nền cũ bằng ảnh rừng mùa thu */
-            background-image: url('uploads/anhnen.jpg');
-        }
-
-        /* Thêm CSS cho canvas 3D */
-        #leaf-canvas-3d {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1; /* Đặt phía sau tất cả */
-            pointer-events: none; /* Cho phép click xuyên qua */
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
+    <style>body::before { background-image: url('uploads/1764430060-hinh-nen-menh-moc-22.jpg'); }</style>
 </head>
 <body class="antialiased">
 
-    <!-- Canvas cho hiệu ứng lá rơi 3D -->
-    <canvas id="leaf-canvas-3d"></canvas>
+    <div id="leaf-container"></div>
+
+    <div class="music-control-container">
+        <div class="music-waves"></div>
+        <button id="musicToggleBtn" class="music-btn" title="Bật/Tắt nhạc">
+            <img src="uploads/1764437175-Video-Player-Logo-Transparent-PNG.png" alt="Music Disc">
+        </button>
+        <audio id="bgMusic" loop>
+            <source src="uploads/1762791269-nhacnen.mp3" type="audio/mpeg">
+        </audio>
+    </div>
     
-    <!-- <div id="leaf-container"></div>  (Đã xóa) -->
-    
+    <div class="bamboo-foreground">
+        <img src="uploads/1762783906-Pngtreegreenbambooforestgreenbamboo_2454595.png" class="bamboo-img" id="bambooLeft" alt="Bamboo Decor">
+        <img src="uploads/1762783906-Pngtreegreenbambooforestgreenbamboo_2454595.png" class="bamboo-img" id="bambooRight" style="transform: scaleX(-1);" alt="Bamboo Decor">
+    </div>
+
     <div class="fab-container">
         <div class="fab-links">
-            <a href="https://m.me/phanthi.ngocduy" target="_blank" class="fab-link" title="Nhắn tin Messenger" style="background-color: #00B2FF;">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Facebook_Messenger_logo_2020.svg/512px-Facebook_Messenger_logo_2020.svg.png" alt="Messenger" style="width: 24px; height: 24px;">
+            <a href="https://m.me/phanthi.ngocduy" target="_blank" rel="noopener noreferrer" class="fab-link" style="background-color: #FFFFFF;">
+                <img src="uploads/1762820974-hd-official-new-facebook-messenger-icon-logo-png-701751694787819hlhkutzsan.png">
             </a>
-            <a href="https://zalo.me/0388989732" target="_blank" class="fab-link" title="Chat Zalo" style="background-color: #0068FF;">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Icon_of_Zalo.svg/512px-Icon_of_Zalo.svg.png" alt="Zalo" style="width: 24px; height: 24px;">
+            <a href="https://zalo.me/0388989732" target="_blank" rel="noopener noreferrer" class="fab-link" style="background-color: #FFFFFF;">
+                <img src="uploads/1762820974-Logo-zalo-png.png">
             </a>
-            <a href="tel:0388989732" class="fab-link" title="Gọi ngay" style="background-color: #10B981;">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+            <a href="tel:0388989732" target="_blank" rel="noopener noreferrer" class="fab-link" style="background-color: #FFFFFF;">
+                <img src="uploads/1762820974-png-clipart-call-icon-telephone-call-prank-call-email-iphone-telefono-miscellaneous-text-thumbnail.png">
             </a>
         </div>
         <div class="fab-toggle">
@@ -57,239 +46,223 @@
         </div>
     </div>
 
-    <header class="bg-transparent absolute top-0 left-0 w-full z-10 py-6 px-4 md:px-8">
+    <header class="bg-transparent absolute top-0 left-0 w-full z-10 py-4 px-3 md:py-6 md:px-8">
         <div class="container mx-auto flex justify-between items-center max-w-6xl">
-            <a href="index.html" class="text-3xl font-extrabold text-green-900">
-                Lam Trúc Spa
-            </a>
-            <nav>
-                <a href="#contact" class="text-sm font-medium text-gray-700 hover:text-green-900 bg-white/50 backdrop-blur-sm shadow-sm hover:bg-white px-4 py-2 rounded-md transition-colors">
-                    Liên Hệ
-                </a>
-            </nav>
+            <a href="index.html" class="text-2xl md:text-3xl font-extrabold text-green-900 reveal-on-scroll">Xin Chào!</a>
         </div>
     </header>
 
     <main class="relative overflow-hidden">
-        <section class="min-h-screen flex items-center justify-center py-20 px-4 md:px-8" id="hero">
+        <section class="min-h-[80vh] md:min-h-screen flex items-center justify-center py-16 px-4 md:px-8" id="hero">
             <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-green-300 rounded-full filter blur-3xl opacity-20 animate-pulse"></div>
             <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-emerald-300 rounded-full filter blur-3xl opacity-20 animate-pulse animation-delay-4000"></div>
             
-            <div class="container mx-auto max-w-4xl text-center relative z-10">
-                <h1 class="text-5xl md:text-7xl font-extrabold mb-6 leading-tight text-green-900">
-                    Thư Giãn & Tái Tạo
-                </h1>
-                <p class="text-xl md:text-2xl text-gray-700 max-w-2xl mx-auto">
-                    Trải nghiệm dịch vụ chăm sóc sức khỏe và sắc đẹp hàng đầu.
-                </p>
-                <a href="#menu" class="cta-button">Xem Dịch Vụ</a>
+            <div class="container mx-auto max-w-4xl text-center relative z-10 pt-10">
+                <h1 class="text-4xl md:text-7xl font-extrabold mb-4 md:mb-6 leading-tight text-green-900 reveal-on-scroll">Lam Trúc Spa</h1>
+                <p class="text-lg md:text-2xl text-gray-700 max-w-2xl mx-auto reveal-on-scroll mb-6">Lam Trúc nhẹ ru gió, Hương trúc quyện hồn hoa. Dưỡng sinh từ tâm tĩnh, Thân khỏe, mộng an hòa.</p>
+                <div class="reveal-on-scroll" style="transition-delay: 0.4s;">
+                    <button id="openBookingModalHero" class="cta-button text-sm md:text-base px-6 py-3">Đặt Lịch Hẹn Ngay</button>
+                </div>
             </div>
         </section>
 
         <section class="py-10 md:py-16 px-4 md:px-8" id="slider">
-            <div class="container mx-auto max-w-6xl">
+            <div class="container mx-auto max-w-6xl reveal-on-scroll">
                 <div class="swiper mySwiper">
                     <div class="swiper-wrapper">
-                        <div class="swiper-slide">
-                            <img src="https://placehold.co/1200x600/a7f3d0/14532d?text=Ảnh+Slider+1" alt="Slider Image 1">
-                        </div>
-                        <div class="swiper-slide">
-                            <img src="https://placehold.co/1200x600/6ee7b7/14532d?text=Ảnh+Slider+2" alt="Slider Image 2">
-                        </div>
-                        <div class="swiper-slide">
-                            <img src="https://placehold.co/1200x600/34d399/14532d?text=Ảnh+Slider+3" alt="Slider Image 3">
-                        </div>
+                        <div class="swiper-slide"><img src="uploads/1762793899-1.jpg" alt="Slider Image"></div>
+                        <div class="swiper-slide"><img src="uploads/1762819462-2.jpg" alt="Slider Image"></div>
+                        <div class="swiper-slide"><img src="uploads/1762819484-download17.jpg" alt="Slider Image"></div>
+                        <div class="swiper-slide"><img src="uploads/1762819502-IMG_20240730_142148.jpg" alt="Slider Image"></div>
+                        <div class="swiper-slide"><img src="uploads/1762819517-IMG_20230927_123226.jpg" alt="Slider Image"></div>
+                        <div class="swiper-slide"><img src="uploads/1762819851-download_17215510408211.jpg" alt="Slider Image"></div>
                     </div>
-                    <div class="swiper-pagination"></div>
-                    <div class="swiper-button-next"></div>
-                    <div class="swiper-button-prev"></div>
+                    <div class="swiper-pagination"></div><div class="swiper-button-next"></div><div class="swiper-button-prev"></div>
                 </div>
             </div>
         </section>
 
-        <section class="py-20 md:py-32 px-4 md:px-8 bg-white shadow-lg" id="about">
+        <section class="py-12 md:py-32 px-4 md:px-8 bg-white shadow-lg" id="about">
             <div class="container mx-auto max-w-4xl">
-                <h2 class="text-4xl md:text-5xl font-extrabold text-center mb-12 text-green-900">
-                    Về Chúng Tôi
-                </h2>
-                <p class="text-lg md:text-xl text-gray-700 leading-relaxed text-center max-w-3xl mx-auto">
-                    Nội dung giới thiệu về spa của bạn. Viết một vài đoạn văn mô tả sứ mệnh, giá trị và điều làm nên sự đặc biệt của spa. Chúng tôi cam kết mang đến...
+                <h2 class="text-3xl md:text-5xl font-extrabold text-center mb-8 md:mb-12 text-green-900 reveal-on-scroll">Chăm Sóc Sức Khỏe Từ Tâm tại Lam Trúc Spa</h2>
+                <p class="text-lg md:text-xl text-gray-700 leading-relaxed text-center max-w-3xl mx-auto reveal-on-scroll" style="transition-delay: 0.2s;">
+                    Bạn đang mệt mỏi? Căng thẳng vì đau đầu, mất ngủ? Hay phiền muộn vì các chứng đau mỏi, cổ vai gáy, đau lưng và tê tay tê chân?<br /><br />
+                    Hãy đến với Lam Trúc Spa!<br /><br />
+                    Chúng tôi không chỉ mang đến trải nghiệm thư giãn tuyệt vời với gội đầu dưỡng sinh, mà còn cung cấp các liệu pháp trị liệu chuyên sâu, hỗ trợ các vấn đề sức khỏe như rối loạn tiền đình, viêm xoang, giải độc gan và làm ấm phụ khoa.<br /><br />
+                    Lam Trúc Spa – Nơi sức khỏe của bạn là ưu tiên hàng đầu. Hãy đặt lịch hẹn ngay hôm nay để cảm nhận sự khác biệt!
                 </p>
             </div>
         </section>
         
-        <section class="py-20 md:py-32 px-4 md:px-8" id="menu">
+        <section class="py-12 md:py-32 px-4 md:px-8" id="menu">
             <div class="container mx-auto max-w-4xl">
-                <h2 class="text-4xl md:text-5xl font-extrabold text-center mb-16 text-green-900">
-                    Bảng Dịch Vụ
-                </h2>
-                
+                <h2 class="text-3xl md:text-5xl font-extrabold text-center mb-10 md:mb-16 text-green-900 reveal-on-scroll">Bảng giá Dịch vụ Trị liệu</h2>
                 <div class="space-y-8">
-                    <div class="bg-white p-6 rounded-lg border border-gray-200 shadow-lg transition-all hover:shadow-xl service-modal-trigger"
-                         data-name="Dịch Vụ Massage Thảo Dược"
-                         data-duration="60 phút"
-                         data-price="350.000đ"
-                         data-desc="Mô tả chi tiết về dịch vụ massage thảo dược. Sử dụng các loại thảo dược tự nhiên...<br><br>Giúp thư giãn cơ bắp, đả thông kinh lạc." 
-                         data-image="https://placehold.co/800x600/a7f3d0/14532d?text=Ảnh+Dịch+Vụ+1"
-                         data-video="">
-                        
-                        <img src="https://placehold.co/800x600/a7f3d0/14532d?text=Ảnh+Dịch+Vụ+1" 
-                             alt="Dịch Vụ 1" 
-                             class="w-full h-64 object-cover rounded-lg mb-4 border border-gray-200 cursor-zoom-in zoomable" 
-                             onerror="this.onerror=null; this.src='https://placehold.co/600x400/eeeeee/aaaaaa?text=Image+Error';">
-
+                    
+                    <div class="bg-white p-6 rounded-lg border border-gray-200 shadow-lg transition-all hover:shadow-xl service-modal-trigger reveal-on-scroll"
+                         data-name="Trị liệu Cổ Vai Gáy" data-duration="60 phút" data-price="199.000đ" data-desc="Đả thông kinh lạc, làm mềm cơ, giảm đau mỏi vùng cổ, vai, gáy, có gói trải nghiệm: 30 phút 129.000đ" data-image="uploads/1763034390-IMG_20251011_143405.jpg">
+                        <img src="uploads/1763034390-IMG_20251011_143405.jpg" alt="Trị liệu Cổ Vai Gáy" class="w-full h-64 object-cover rounded-lg mb-4 border border-gray-200 cursor-zoom-in zoomable">
                         <div class="flex flex-col sm:flex-row justify-between sm:items-center mb-2">
-                            <h3 class="text-2xl font-bold text-green-800">Dịch Vụ Massage Thảo Dược</h3>
-                            <div class="flex-shrink-0 mt-2 sm:mt-0">
-                                <span class="text-lg font-medium text-gray-600">60 phút</span>
-                                <span class="mx-2 text-gray-400">|</span>
-                                <span class="text-xl font-bold text-green-700">350.000đ</span>
-                            </div>
+                            <h3 class="text-2xl font-bold text-green-800">Trị liệu Cổ Vai Gáy</h3>
+                            <div class="flex-shrink-0 mt-2 sm:mt-0"><span class="text-lg font-medium text-gray-600">60 phút</span><span class="mx-2 text-gray-400">|</span><span class="text-xl font-bold text-green-700">199.000đ</span></div>
                         </div>
-                        <p class="text-gray-600">
-                            Mô tả ngắn gọn về dịch vụ massage thảo dược.
-                        </p>
+                        <p class="text-gray-600">Đả thông kinh lạc, làm mềm cơ, giảm đau mỏi vùng cổ, vai, gáy, có gói trải nghiệm: 30 phút 129.000đ</p>
+                        <button class="mt-4 text-sm text-green-700 font-bold hover:underline booking-trigger-small" data-service-name="Trị liệu Cổ Vai Gáy">👉 Đặt lịch dịch vụ này</button>
                     </div>
 
-                    <div class="bg-white p-6 rounded-lg border border-gray-200 shadow-lg transition-all hover:shadow-xl service-modal-trigger"
-                         data-name="Gội Đầu Dưỡng Sinh"
-                         data-duration="75 phút"
-                         data-price="400.000đ"
-                         data-desc="Mô tả chi tiết về gội đầu dưỡng sinh. Kết hợp massage cổ vai gáy..."
-                         data-image=""
-                         data-video="https://www.youtube.com/watch?v=wLacTN7xXCw"> <div class="w-full aspect-video rounded-lg mb-4 overflow-hidden border border-gray-200 pointer-events-none">
-                            <iframe class="w-full h-full" src="https://www.youtube.com/embed/wLacTN7xXCw" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <div class="bg-white p-6 rounded-lg border border-gray-200 shadow-lg transition-all hover:shadow-xl service-modal-trigger reveal-on-scroll"
+                         data-name="Trị Liệu Đau Lưng" data-duration="60 phút" data-price="199.000đ" data-desc="Đánh bay cơn đau mỏi thắt lưng dai dẳng và tìm lại giấc ngủ ngon với liệu trình Dưỡng thận chuyên sâu, mang lại cảm giác nhẹ nhõm ngay lần đầu trải nghiệm." data-image="uploads/1762822053-IMG_20251011_143330.jpg">
+                        <img src="uploads/1762822053-IMG_20251011_143330.jpg" alt="Trị Liệu Đau Lưng" class="w-full h-64 object-cover rounded-lg mb-4 border border-gray-200 cursor-zoom-in zoomable">
+                        <div class="flex flex-col sm:flex-row justify-between sm:items-center mb-2">
+                            <h3 class="text-2xl font-bold text-green-800">Trị Liệu Đau Lưng</h3>
+                            <div class="flex-shrink-0 mt-2 sm:mt-0"><span class="text-lg font-medium text-gray-600">60 phút</span><span class="mx-2 text-gray-400">|</span><span class="text-xl font-bold text-green-700">199.000đ</span></div>
                         </div>
+                        <p class="text-gray-600">Đánh bay cơn đau mỏi thắt lưng dai dẳng...</p>
+                        <button class="mt-4 text-sm text-green-700 font-bold hover:underline booking-trigger-small" data-service-name="Trị Liệu Đau Lưng">👉 Đặt lịch dịch vụ này</button>
+                    </div>
 
+                     <div class="bg-white p-6 rounded-lg border border-gray-200 shadow-lg transition-all hover:shadow-xl service-modal-trigger reveal-on-scroll"
+                         data-name="Gội Đầu Dưỡng Sinh" data-duration="45 Phút" data-price="99.000đ" data-desc="Gội đầu dưỡng sinh kết hợp làm sạch và massage ấn huyệt." data-image="uploads/1763035009-download_1721550997454.jpg">
+                        <img src="uploads/1763035009-download_1721550997454.jpg" alt="Gội Đầu Dưỡng Sinh" class="w-full h-64 object-cover rounded-lg mb-4 border border-gray-200 cursor-zoom-in zoomable">
                         <div class="flex flex-col sm:flex-row justify-between sm:items-center mb-2">
                             <h3 class="text-2xl font-bold text-green-800">Gội Đầu Dưỡng Sinh</h3>
-                            <div class="flex-shrink-0 mt-2 sm:mt-0">
-                                <span class="text-lg font-medium text-gray-600">75 phút</span>
-                                <span class="mx-2 text-gray-400">|</span>
-                                <span class="text-xl font-bold text-green-700">400.000đ</span>
-                            </div>
+                            <div class="flex-shrink-0 mt-2 sm:mt-0"><span class="text-lg font-medium text-gray-600">45 Phút</span><span class="mx-2 text-gray-400">|</span><span class="text-xl font-bold text-green-700">99.000đ</span></div>
                         </div>
-                        <p class="text-gray-600">
-                            Mô tả ngắn về gội đầu dưỡng sinh.
-                        </p>
+                        <p class="text-gray-600">Gội đầu dưỡng sinh kết hợp làm sạch và massage ấn huyệt.</p>
+                        <button class="mt-4 text-sm text-green-700 font-bold hover:underline booking-trigger-small" data-service-name="Gội Đầu Dưỡng Sinh">👉 Đặt lịch dịch vụ này</button>
                     </div>
 
-                    </div>
+                </div>
             </div>
         </section>
 
-                       
+        <section class="py-12 md:py-32 px-4 md:px-8 bg-green-50/70 backdrop-blur-sm" id="testimonials">
+            <div class="container mx-auto max-w-4xl">
+                <h2 class="text-3xl md:text-5xl font-extrabold text-center mb-10 md:mb-16 text-green-900 reveal-on-scroll">Khách hàng Nói về Chúng tôi</h2>
+                
+                <div class="space-y-8 mb-16">
+                    <div class="bg-white p-6 md:p-8 rounded-lg border border-gray-200 shadow-lg flex flex-col sm:flex-row gap-6 reveal-on-scroll">
+                        <div class="flex-shrink-0 text-center sm:text-left">
+                            <img src="https://placehold.co/100x100/e0e7ff/4338ca?text=L" class="w-24 h-24 rounded-full mx-auto sm:mx-0 mb-4 border-4 border-green-200 shadow-lg object-cover">
+                            <h4 class="text-xl font-bold text-green-800">Lợi Chuột</h4>
+                        </div>
+                        <div class="flex-grow">
+                            <div class="flex items-center mb-2 text-yellow-500">★★★★★</div>
+                            <p class="text-lg text-gray-700 italic leading-relaxed">"Ok"</p>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white p-6 md:p-8 rounded-lg border border-gray-200 shadow-lg flex flex-col sm:flex-row gap-6 reveal-on-scroll">
+                        <div class="flex-shrink-0 text-center sm:text-left">
+                             <img src="https://placehold.co/100x100/e0e7ff/4338ca?text=M" class="w-24 h-24 rounded-full mx-auto sm:mx-0 mb-4 border-4 border-green-200 shadow-lg object-cover">
+                            <h4 class="text-xl font-bold text-green-800">My</h4>
+                        </div>
+                        <div class="flex-grow">
+                            <div class="flex items-center mb-2 text-yellow-500">★★★★★</div>
+                            <p class="text-lg text-gray-700 italic leading-relaxed">"Ok"</p>
+                        </div>
+                    </div>
 
-        <section class="py-20 md:py-32 px-4 md:px-8 bg-white shadow-lg" id="philosophy">
+                    <div class="bg-white p-6 md:p-8 rounded-lg border border-gray-200 shadow-lg flex flex-col sm:flex-row gap-6 reveal-on-scroll">
+                        <div class="flex-shrink-0 text-center sm:text-left">
+                             <img src="https://placehold.co/100x100/e0e7ff/4338ca?text=K" class="w-24 h-24 rounded-full mx-auto sm:mx-0 mb-4 border-4 border-green-200 shadow-lg object-cover">
+                            <h4 class="text-xl font-bold text-green-800">Khách</h4>
+                        </div>
+                        <div class="flex-grow">
+                            <div class="flex items-center mb-2 text-yellow-500">★★★★★</div>
+                            <p class="text-lg text-gray-700 italic leading-relaxed">"Cảm ơn chị, sau trị liệu xong em ngủ rất ngon"</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-12 md:py-32 px-4 md:px-8 bg-white shadow-lg" id="philosophy">
             <div class="container mx-auto max-w-4xl text-center">
-                <h2 class="text-4xl md:text-5xl font-extrabold mb-12 text-green-900">
-                    Triết Lý Của Chúng Tôi
-                </h2>
-                <p class="text-lg md:text-xl text-gray-700 leading-relaxed max-w-3xl mx-auto">
-                    Nội dung về triết lý, phương pháp hoặc cam kết của spa. Chúng tôi tin rằng vẻ đẹp...
+                <h2 class="text-3xl md:text-5xl font-extrabold mb-8 md:mb-12 text-green-900 reveal-on-scroll">Giải Pháp Trị Liệu Của Chúng Tôi</h2>
+                <p class="text-lg md:text-xl text-gray-700 leading-relaxed max-w-3xl mx-auto reveal-on-scroll" style="transition-delay: 0.2s;">
+                    Tại Lam Trúc Spa, chúng tôi giải quyết vấn đề đau mỏi bằng một combo trị liệu chuyên sâu:<br/>
+                    Xoa bóp Bấm huyệt: "Mở khóa" các điểm đau.<br/>
+                    Massage Đả thông Kinh lạc: Khai thông dòng chảy khí huyết.<br/>
+                    Đắp thuốc Bài độc: Dùng thảo dược ấm nóng để "hút" sạch hàn khí.
                 </p>
             </div>
         </section>
 
-        <section class="py-20 md:py-32 px-4 md:px-8" id="blog">
-            <div class="container mx-auto max-w-6xl">
-                <h2 class="text-4xl md:text-5xl font-extrabold text-center mb-16 text-green-900">
-                    Tin Tức & Khuyến Mãi
-                </h2>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <div class="blog-card">
-                        <img src="https://placehold.co/600x400/dcfce7/14532d?text=Ảnh+Blog+1" 
-                             alt="Tiêu đề bài viết" 
-                             class="blog-image cursor-zoom-in zoomable">
-                        <div class="blog-content">
-                            <h3 class="blog-title">Khuyến mãi mới tháng 12</h3>
-                            <p class="blog-date">Đăng ngày: 11/11/2025</p>
-                            <p class="blog-excerpt">
-                                Nội dung tóm tắt cho bài viết blog hoặc tin khuyến mãi. Nhấn vào đây để xem chi tiết...
-                            </p>
-                        </div>
-                    </div>
-                    
-                    <div class="blog-card">
-                        <img src="https://placehold.co/600x400/dcfce7/14532d?text=Ảnh+Blog+2" 
-                             alt="Tiêu đề bài viết 2" 
-                             class="blog-image cursor-zoom-in zoomable">
-                        <div class="blog-content">
-                            <h3 class="blog-title">Mẹo Chăm Sóc Da Mùa Đông</h3>
-                            <p class="blog-date">Đăng ngày: 10/11/2025</p>
-                            <p class="blog-excerpt">
-                                Một số mẹo nhỏ giúp bạn giữ gìn làn da...
-                            </p>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </section>
-
-        <section class="py-20 md:py-32 px-4 md:px-8" id="cta">
+        <section class="py-12 md:py-32 px-4 md:px-8" id="cta">
             <div class="container mx-auto max-w-4xl text-center relative z-10">
                 <div class="absolute inset-0 w-full h-full bg-green-300 rounded-full filter blur-3xl opacity-30"></div>
                 <div class="relative z-10">
-                    <h2 class="text-4xl md:text-5xl font-extrabold mb-6 text-green-900">
-                        Đặt Lịch Hẹn Ngay Hôm Nay
-                    </h2>
-                    <p class="text-xl md:text-2xl text-gray-700 max-w-2xl mx-auto">
-                        Hãy để chúng tôi chăm sóc bạn.
-                    </p>
-                    <a href="tel:0388989732" class="cta-button">Gọi Ngay: 0388989732</a>
+                    <h2 class="text-3xl md:text-5xl font-extrabold mb-6 text-green-900 reveal-on-scroll">Gọi ngay để được tư vấn, sắp lịch</h2>
+                    <p class="text-xl md:text-2xl text-gray-700 max-w-2xl mx-auto reveal-on-scroll" style="transition-delay: 0.2s;">Hãy để chúng tôi đồng hành cùng bạn trên con đường tìm lại sức khỏe và sự bình yên trong tâm hồn.</p>
+                    <div class="reveal-on-scroll" style="transition-delay: 0.4s;">
+                        <button id="openBookingModalCta" class="cta-button">Đặt Lịch Hẹn Ngay</button>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <section class="py-20 md:py-32 px-4 md:px-8 bg-white shadow-lg" id="contact">
+        <section class="py-12 md:py-32 px-4 md:px-8 bg-white shadow-lg" id="contact">
             <div class="container mx-auto max-w-4xl text-center">
-                <h2 class="text-4xl md:text-5xl font-extrabold mb-12 text-green-900">
-                    Liên Hệ & Địa Chỉ
-                </h2>
-                
+                <h2 class="text-3xl md:text-5xl font-extrabold mb-8 md:mb-12 text-green-900 reveal-on-scroll">Liên hệ & Địa chỉ</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-left">
-                    <div class="space-y-6">
-                        <div>
-                            <h3 class="text-lg font-semibold text-gray-500 uppercase tracking-wider">Địa chỉ</h3>
-                            <p class="text-xl text-green-800">
-                                243/3 Bình Sơn, Xã Vĩnh Công, Tỉnh Tây Ninh.
-                            </p>
-                        </div>
-                        
-                        <div>
-                            <h3 class="text-lg font-semibold text-gray-500 uppercase tracking-wider">Gọi cho chúng tôi</h3>
-                            <a href="tel:0388989732" class="text-xl text-green-800 hover:text-green-600 transition-colors">
-                                0388989732
-                            </a>
-                        </div>
-                        <div>
-                            <h3 class="text-lg font-semibold text-gray-500 uppercase tracking-wider">Chat với chúng tôi</h3>
-                            <div class="flex space-x-4 mt-2">
-                                <a href="https://zalo.me/0388989732" class="text-xl text-green-800 hover:text-green-600 transition-colors">Zalo</a>
-                                <a href="https://m.me/phanthi.ngocduy" class="text-xl text-green-800 hover:text-green-600 transition-colors">Messenger</a>
-                            </div>
-                        </div>
-                        </div>
-                    <div>
-                        <div class="w-full h-[300px] bg-gray-200 rounded-lg flex items-center justify-center text-gray-500">
-                           <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d1905.5299436090365!2d106.45679634921827!3d10.521727470630305!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x310ab5acafe0c7f5%3A0x1e8141d31ba27ddd!2sLam%20Tr%C3%BAc%20Spa!5e0!3m2!1svi!2s!4v1762966588262!5m2!1svi!2s" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                        </div>
+                    <div class="space-y-6 reveal-on-scroll">
+                        <div><h3 class="text-lg font-semibold text-gray-500 uppercase tracking-wider">Địa chỉ</h3><p class="text-xl text-green-800">243/3 Ấp Bình Sơn, Xã Vĩnh Công, Tỉnh Tây Ninh.</p></div>
+                        <div><h3 class="text-lg font-semibold text-gray-500 uppercase tracking-wider">Gọi cho chúng tôi</h3><a href="tel:0388989732" class="text-xl text-green-800 hover:text-green-600">0388989732</a></div>
+                        <div><h3 class="text-lg font-semibold text-gray-500 uppercase tracking-wider">Chat với chúng tôi</h3><div class="flex space-x-4 mt-2"><a href="https://zalo.me/0388989732" class="text-xl text-green-800 hover:text-green-600">Zalo</a><a href="https://m.me/phanthi.ngocduy" class="text-xl text-green-800 hover:text-green-600">Messenger</a></div></div>
+                    </div>
+                    <div class="reveal-on-scroll" style="transition-delay: 0.3s;">
+                        <iframe class="rounded-lg border border-gray-200" width="100%" height="300" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d583.116875226062!2d106.45751464655554!3d10.52214571219001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x310ab5acafe0c7f5%3A0x1e8141d31ba27ddd!2sLam%20Tr%C3%BAc%20Spa!5e0!3m2!1svi!2s!4v1762793652101!5m2!1svi!2s" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                     </div>
                 </div>
             </div>
         </section>
     </main>
 
-    <footer class="py-12 bg-transparent border-t border-gray-200/80">
+    <footer class="py-8 md:py-12 bg-transparent border-t border-gray-200/80">
         <div class="container mx-auto max-w-6xl text-center text-gray-600">
             <p class="font-bold text-lg text-green-900 mb-2">Lam Trúc Spa</p>
-            <p>Hotline: <a href="tel:090xxxxxxx">0388989732</a></p>
-            <p class="mt-4">© 2025 Lam Trúc Spa. </p>
+            <p>Hotline: <a href="tel:0388989732">0388989732</a></p>
+            <p class="mt-4">© 2025 Lam Trúc Spa.</p>
         </div>
     </footer>
     
+    <div id="bookingModal" class="booking-modal">
+        <div class="booking-modal-content">
+            <span id="closeBookingModal" class="booking-modal-close">×</span>
+            <h3 class="text-2xl font-bold text-green-800 mb-4 text-center">Đặt Lịch Hẹn</h3>
+            <p class="text-gray-600 text-center mb-6">Điền thông tin bên dưới hoặc liên hệ Zalo <b>0388.989.732</b>.</p>
+            
+            <form action="https://formspree.io/f/mqakpeql" method="POST" class="space-y-4" id="bookingForm">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700">Họ và Tên</label>
+                    <input type="text" id="book_name" name="name" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700">Số Điện Thoại</label>
+                    <input type="tel" id="book_phone" name="phone" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700">Dịch Vụ Quan Tâm</label>
+                    <select name="service" id="bookServiceInput" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500">
+                        <option value="Tư vấn chung">-- Chọn dịch vụ --</option>
+                        <option value="Trị liệu Cổ Vai Gáy">Trị liệu Cổ Vai Gáy</option>
+                        <option value="Trị Liệu Đau Lưng">Trị Liệu Đau Lưng</option>
+                        <option value="Trị Liệu Chân">Trị Liệu Chân</option>
+                        <option value="Trị Liệu Tỳ Vị">Trị Liệu Tỳ Vị</option>
+                        <option value="Gội Đầu Dưỡng Sinh">Gội Đầu Dưỡng Sinh</option>
+                        <option value="Khác">Khác</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700">Ghi Chú Thêm</label>
+                    <textarea name="message" rows="2" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500"></textarea>
+                </div>
+                <button type="submit" class="w-full bg-green-700 text-white font-bold py-3 rounded-md hover:bg-green-800 transition-colors">XÁC NHẬN ĐẶT LỊCH</button>
+            </form>
+        </div>
+    </div>
+
     <div id="serviceModal" class="service-modal">
         <div class="service-modal-content">
             <span id="closeServiceModal" class="service-modal-close">×</span>
@@ -298,167 +271,14 @@
                 <h3 id="serviceModalTitle" class="service-modal-title"></h3>
                 <p id="serviceModalInfo" class="service-modal-info"></p>
             </div>
-            <div class="service-modal-body">
-                <p id="serviceModalDesc" class="service-modal-desc"></p>
-            </div>
+            <div class="service-modal-body"><p id="serviceModalDesc" class="service-modal-desc"></p></div>
         </div>
     </div>
 
-    <div id="imageLightbox">
-        <span id="closeLightbox">×</span>
-        <img id="lightboxImage" src="" alt="Ảnh phóng to">
-    </div>
+    <div id="imageLightbox"><span id="closeLightbox">×</span><img id="lightboxImage" src="" alt="Ảnh phóng to"></div>
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <script src="script.js?v=1.0.1" defer></script>
-
-    <!-- Xóa script cho lá rơi 2D cũ -->
-    <!-- <script>
-        window.fallingLeafImageUrl = 'uploads/anh-la-roi.png'; 
-    </script> -->
-
-    <!-- BẮT ĐẦU: Script cho hiệu ứng lá rơi 3D -->
-    <script type="module">
-        // Khởi tạo các biến cơ bản của three.js
-        let scene, camera, renderer;
-        const leaves = [];
-        const leafCount = 500; // Tăng số lượng lá
-
-        // Hàm khởi tạo
-        function init() {
-            // 1. Tạo cảnh (Scene)
-            scene = new THREE.Scene();
-            // Đã xóa sương mù (fog) để hợp với nền web
-
-            // 2. Tạo Camera (Góc nhìn)
-            camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-            camera.position.z = 15; // Đặt camera lùi ra xa để thấy cảnh
-
-            // 3. Tạo Renderer (Trình kết xuất)
-            const canvas = document.getElementById('leaf-canvas-3d'); // Trỏ đến canvas mới
-            renderer = new THREE.WebGLRenderer({ 
-                canvas: canvas,
-                antialias: true, // Bật khử răng cưa
-                alpha: true // Cho phép nền TRONG SUỐT
-            });
-            renderer.setSize(window.innerWidth, window.innerHeight);
-            renderer.setPixelRatio(window.devicePixelRatio); // Tăng độ nét
-            renderer.setClearAlpha(0); // Đảm bảo nền hoàn toàn trong suốt
-
-            // 4. Thêm ánh sáng
-            const ambientLight = new THREE.AmbientLight(0xffffff, 0.7); // Ánh sáng môi trường
-            scene.add(ambientLight);
-
-            const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8); // Ánh sáng mặt trời
-            directionalLight.position.set(5, 10, 7.5);
-            scene.add(directionalLight);
-
-            // 5. Tạo lá
-            // Tải hình ảnh lá
-            const textureLoader = new THREE.TextureLoader();
-            // *** SỬ DỤNG LINK HÌNH ẢNH CỦA BẠN ***
-            // Thay bằng ảnh lá mùa thu màu cam/vàng
-            const leafTexture = textureLoader.load('uploads/anh-la-roi.png'); 
-            
-            // Sử dụng PlaneGeometry (mặt phẳng) để làm lá cho đơn giản
-            const leafGeometry = new THREE.PlaneGeometry(0.2, 0.2); // Giảm kích thước cơ bản
-            // Dùng MeshPhongMaterial để lá phản ứng với ánh sáng
-            const leafMaterial = new THREE.MeshPhongMaterial({ 
-                map: leafTexture,       // Sử dụng hình ảnh đã tải
-                color: 0xffffff,        // Màu trắng để texture hiển thị đúng màu
-                side: THREE.DoubleSide, // Vẽ cả 2 mặt của lá
-                transparent: true       // Cho phép hiển thị phần trong suốt của ảnh PNG
-            });
-
-            for (let i = 0; i < leafCount; i++) {
-                const leaf = new THREE.Mesh(leafGeometry, leafMaterial);
-
-                // Đặt vị trí ngẫu nhiên cho lá
-                leaf.position.set(
-                    (Math.random() - 0.5) * 30, // Thu hẹp phạm vi X
-                    (Math.random() * 20) + 10,  // Phân bổ bên trên màn hình (Y)
-                    (Math.random() - 0.5) * 30  // Thu hẹp phạm vi Z (chiều sâu)
-                );
-
-                // Đặt góc xoay ngẫu nhiên ban đầu
-                leaf.rotation.set(
-                    Math.random() * Math.PI * 2,
-                    Math.random() * Math.PI * 2,
-                    Math.random() * Math.PI * 2
-                );
-
-                // Thêm: Kích thước ngẫu nhiên cho mỗi lá
-                const scale = 0.5 + Math.random() * 0.8; // Kích thước từ 0.5x đến 1.3x
-                leaf.scale.set(scale, scale, scale);
-
-                // Lưu trữ tốc độ rơi và xoay riêng cho mỗi lá
-                leaf.userData = {
-                    spinX: (Math.random() - 0.5) * 0.03,
-                    spinY: (Math.random() - 0.5) * 0.03,
-                    spinZ: (Math.random() - 0.5) * 0.03,
-                    fallSpeed: 0.03 + Math.random() * 0.03, // Tốc độ rơi
-                    drift: (Math.random() - 0.5) * 0.01 // Độ trôi dạt cá nhân
-                };
-
-                leaves.push(leaf);
-                scene.add(leaf);
-            }
-
-            // Thêm sự kiện resize cửa sổ
-            window.addEventListener('resize', onWindowResize, false);
-
-            // Bắt đầu vòng lặp
-            animate();
-        }
-
-        // Hàm xử lý khi thay đổi kích thước cửa sổ
-        function onWindowResize() {
-            camera.aspect = window.innerWidth / window.innerHeight;
-            camera.updateProjectionMatrix();
-            renderer.setSize(window.innerWidth, window.innerHeight);
-        }
-
-        // Vòng lặp
-        function animate() {
-            requestAnimationFrame(animate); // Gọi lại chính nó ở khung hình tiếp theo
-
-            const time = Date.now() * 0.0001; // Yếu tố thời gian để tạo gió
-
-            // Tính toán lực gió chung
-            const windX = Math.sin(time) * 0.02;
-            const windZ = Math.cos(time * 0.7) * 0.01; // Gió thổi theo chiều sâu
-
-            // Cập nhật từng chiếc lá
-            leaves.forEach(leaf => {
-                // 1. Rơi xuống (giảm trục Y)
-                leaf.position.y -= leaf.userData.fallSpeed;
-
-                // 2. Thêm lực gió + độ trôi dạt riêng
-                leaf.position.x += windX + leaf.userData.drift;
-                leaf.position.z += windZ;
-
-                // 3. Xoay lá
-                leaf.rotation.x += leaf.userData.spinX;
-                leaf.rotation.y += leaf.userData.spinY;
-                leaf.rotation.z += leaf.userData.spinZ;
-
-                // 4. Tái chế lá khi rơi ra khỏi màn hình
-                if (leaf.position.y < -10) {
-                    // Đặt lại vị trí Y lên trên cùng
-                    leaf.position.y = 20;
-                    // Đặt lại vị trí X và Z ngẫu nhiên
-                    leaf.position.x = (Math.random() - 0.5) * 30; // Thu hẹp phạm vi X
-                    leaf.position.z = (Math.random() - 0.5) * 30; // Thu hẹp phạm vi Z
-                }
-            });
-
-            // Kết xuất cảnh
-            renderer.render(scene, camera);
-        }
-
-        // Chạy hàm khởi tạo
-        init();
-    </script>
-    <!-- KẾT THÚC: Script cho hiệu ứng lá rơi 3D -->
-    </body>
+    <script src="script.js"></script>
+    <script>window.fallingLeafImageUrl = 'uploads/1762791269-8325571.png';</script>
+</body>
 </html>
