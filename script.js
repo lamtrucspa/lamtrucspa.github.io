@@ -1,198 +1,155 @@
 document.addEventListener('DOMContentLoaded', () => {
-            
-    // --- 1. KHỞI TẠO SWIPER ---
+    // 1. SWIPER INIT
     try {
         var swiper = new Swiper(".mySwiper", {
             loop: true,
-            autoplay: {
-                delay: 4000,
-                disableOnInteraction: false,
-            },
-            pagination: {
-                el: ".swiper-pagination",
-                clickable: true,
-            },
-            navigation: {
-                nextEl: ".swiper-button-next",
-                prevEl: ".swiper-button-prev",
-            },
+            autoplay: { delay: 4000, disableOnInteraction: false },
+            pagination: { el: ".swiper-pagination", clickable: true },
+            navigation: { nextEl: ".swiper-button-next", prevEl: ".swiper-button-prev" },
         });
-    } catch(e) { console.error("Swiper init failed", e); }
+    } catch(e) {}
 
-    // --- 2. TỰ ĐỘNG ẨN THÔNG BÁO ---
-    const alerts = document.querySelectorAll('[data-alert]');
-    alerts.forEach(alert => {
-        setTimeout(() => {
-            if (alert) {
-                alert.style.transition = 'opacity 0.5s ease';
-                alert.style.opacity = '0';
-                setTimeout(() => alert.remove(), 500);
-            }
-        }, 4000); // Tăng thời gian lên 4 giây
-    });
-    
-    // --- 3. XỬ LÝ LIGHTBOX (PHÓNG TO ẢNH) ---
+    // 2. LIGHTBOX
     const lightbox = document.getElementById('imageLightbox');
     const lightboxImage = document.getElementById('lightboxImage');
     const closeLightbox = document.getElementById('closeLightbox');
-    
-    if (lightbox && lightboxImage && closeLightbox) {
-        // Tìm tất cả ảnh có class 'zoomable'
+    if (lightbox) {
         document.addEventListener('click', function(e) {
-            if (e.target.classList.contains('zoomable')) {
-                // CHỈNH SỬA: Không kích hoạt lightbox nếu nó nằm trong modal dịch vụ
-                if (e.target.closest('.service-modal-content')) {
-                    return;
-                }
-                lightboxImage.src = e.target.src; // Đặt src cho ảnh modal
-                lightbox.classList.add('show'); // Hiển thị modal
+            if (e.target.classList.contains('zoomable') && !e.target.closest('.service-modal-content')) {
+                lightboxImage.src = e.target.src; 
+                lightbox.classList.add('show'); 
             }
         });
-        
-        // Hàm đóng modal
-        function close() {
-            lightbox.classList.remove('show');
-            setTimeout(() => {
-                lightboxImage.src = ''; // Xóa src sau khi đóng
-            }, 300);
-        }
-        
+        const close = () => { lightbox.classList.remove('show'); setTimeout(() => lightboxImage.src = '', 300); };
         closeLightbox.addEventListener('click', close);
-        lightbox.addEventListener('click', (e) => {
-            if (e.target === lightbox) { // Chỉ đóng khi click vào nền mờ
-                close();
-            }
-        });
+        lightbox.addEventListener('click', (e) => { if (e.target === lightbox) close(); });
     }
 
-    // --- 4. XỬ LÝ MODAL CHI TIẾT DỊCH VỤ ---
+    // 3. SERVICE MODAL
     const serviceModal = document.getElementById('serviceModal');
     const closeServiceModal = document.getElementById('closeServiceModal');
-    
-    const modalTitle = document.getElementById('serviceModalTitle');
-    const modalInfo = document.getElementById('serviceModalInfo');
-    const modalDesc = document.getElementById('serviceModalDesc');
     const modalMedia = document.getElementById('serviceModalMedia');
-
-    if (serviceModal && closeServiceModal && modalTitle && modalInfo && modalDesc && modalMedia) {
-        
-        // Lắng nghe click trên toàn bộ document
+    if (serviceModal) {
         document.addEventListener('click', function(e) {
-            // Sử dụng .closest() để tìm thẻ trigger, kể cả khi click vào thẻ con
             const trigger = e.target.closest('.service-modal-trigger');
-            
-            // Quan trọng: Không kích hoạt nếu click vào ảnh zoomable
-            if (e.target.classList.contains('zoomable')) {
-                return;
-            }
+            if (e.target.classList.contains('booking-trigger-small') || e.target.classList.contains('zoomable')) return;
 
             if (trigger) {
-                e.preventDefault(); // Ngăn hành vi mặc định (nếu có)
+                e.preventDefault(); 
+                document.getElementById('serviceModalTitle').textContent = trigger.dataset.name;
+                document.getElementById('serviceModalInfo').textContent = `${trigger.dataset.duration} | ${trigger.dataset.price}`;
+                document.getElementById('serviceModalDesc').innerHTML = trigger.dataset.desc; 
                 
-                // 1. Lấy dữ liệu từ data attributes
-                const name = trigger.dataset.name;
-                const duration = trigger.dataset.duration;
-                const price = trigger.dataset.price;
-                const desc = trigger.dataset.desc;
-                const image = trigger.dataset.image;
-                const video = trigger.dataset.video;
-                
-                // 2. Đổ dữ liệu vào modal
-                modalTitle.textContent = name;
-                modalInfo.textContent = `${duration} | ${price}`;
-                modalDesc.innerHTML = desc; // Dùng innerHTML vì data-desc đã nl2br
-                
-                // 3. Xử lý Media (Video ưu tiên)
-                modalMedia.innerHTML = ''; // Xóa media cũ
-                if (video) {
-                    // Xử lý link YouTube
-                    let embedUrl = video.replace("watch?v=", "embed/");
+                modalMedia.innerHTML = ''; 
+                if (trigger.dataset.image) {
                     modalMedia.style.display = 'block';
-                    modalMedia.innerHTML = `<iframe src="${embedUrl}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
-                } else if (image) {
-                    modalMedia.style.display = 'block';
-                    modalMedia.innerHTML = `<img src="${image}" alt="${name}" onerror="this.onerror=null; this.src='https://placehold.co/600x400/eeeeee/aaaaaa?text=Image+Error';">`;
+                    modalMedia.innerHTML = `<img src="${trigger.dataset.image}" onerror="this.src='https://placehold.co/600x400';">`;
                 } else {
-                    // Không có ảnh hoặc video
                     modalMedia.style.display = 'none';
                 }
-                
-                // 4. Hiển thị modal
                 serviceModal.classList.add('show');
             }
         });
-        
-        // Hàm đóng modal
-        function closeSvcModal() {
-            serviceModal.classList.remove('show');
-            // Dừng video đang phát (nếu có) bằng cách xóa nội dung
-            setTimeout(() => {
-                 modalMedia.innerHTML = '';
-            }, 300); // Chờ hiệu ứng transition hoàn tất
-        }
-        
-        closeServiceModal.addEventListener('click', closeSvcModal);
-        
-        serviceModal.addEventListener('click', (e) => {
-            if (e.target === serviceModal) { // Chỉ đóng khi click vào nền mờ
-                closeSvcModal();
-            }
-        });
+        const closeSvc = () => { serviceModal.classList.remove('show'); setTimeout(() => modalMedia.innerHTML = '', 300); };
+        closeServiceModal.addEventListener('click', closeSvc);
+        serviceModal.addEventListener('click', (e) => { if (e.target === serviceModal) closeSvc(); });
     }
 
-    // --- 5. PHẦN ĐIỀU KHIỂN NHẠC ĐÃ BỊ XÓA ---
-    // (Vì chúng ta đã chuyển sang trình phát HTML5 mặc định)
+    // 4. BOOKING MODAL
+    const bookingModal = document.getElementById('bookingModal');
+    const closeBookingModal = document.getElementById('closeBookingModal');
+    const bookingServiceInput = document.getElementById('bookServiceInput');
 
-    // --- 6. MỚI: XỬ LÝ HIỆU ỨNG LÁ RƠI ---
-    // Kiểm tra xem URL ảnh lá rơi có tồn tại không (được truyền từ index.php)
-    if (window.fallingLeafImageUrl && window.fallingLeafImageUrl.trim() !== '') {
+    function openBooking(serviceName = null) {
+        if (bookingModal) {
+            if (serviceName && bookingServiceInput) {
+                bookingServiceInput.value = serviceName;
+            }
+            bookingModal.classList.add('show');
+        }
+    }
+    function closeBooking() {
+        if (bookingModal) bookingModal.classList.remove('show');
+    }
+
+    const heroBtn = document.getElementById('openBookingModalHero');
+    const ctaBtn = document.getElementById('openBookingModalCta');
+    if(heroBtn) heroBtn.addEventListener('click', (e) => { e.preventDefault(); openBooking(); });
+    if(ctaBtn) ctaBtn.addEventListener('click', (e) => { e.preventDefault(); openBooking(); });
+    
+    document.addEventListener('click', (e) => {
+        if (e.target.classList.contains('booking-trigger-small')) {
+            e.preventDefault();
+            e.stopPropagation();
+            openBooking(e.target.dataset.serviceName);
+        }
+    });
+
+    if (closeBookingModal) closeBookingModal.addEventListener('click', closeBooking);
+    if (bookingModal) bookingModal.addEventListener('click', (e) => { if (e.target === bookingModal) closeBooking(); });
+
+    // 5. MUSIC & ANIMATION
+    const musicBtn = document.getElementById('musicToggleBtn');
+    const bgMusic = document.getElementById('bgMusic');
+    const bambooLeft = document.getElementById('bambooLeft');
+    const bambooRight = document.getElementById('bambooRight');
+    if (musicBtn && bgMusic) {
+        function updateMusicUI(isPlaying) {
+            if (isPlaying) {
+                musicBtn.classList.add('playing');
+                if (bambooLeft) bambooLeft.classList.add('swaying');
+                if (bambooRight) bambooRight.classList.add('swaying-delayed');
+            } else {
+                musicBtn.classList.remove('playing');
+                if (bambooLeft) bambooLeft.classList.remove('swaying');
+                if (bambooRight) bambooRight.classList.remove('swaying-delayed');
+            }
+        }
+        musicBtn.addEventListener('click', () => {
+            if (bgMusic.paused) { bgMusic.play().then(() => updateMusicUI(true)).catch(() => {}); } 
+            else { bgMusic.pause(); updateMusicUI(false); }
+        });
+        
+        // Cố gắng tự động phát nhạc (trình duyệt thường chặn cái này)
+        document.body.addEventListener('click', function() {
+            if (bgMusic.paused) {
+                 bgMusic.play().then(() => updateMusicUI(true)).catch(() => {});
+            }
+        }, { once: true });
+    }
+
+    // 6. FALLING LEAVES
+    if (window.fallingLeafImageUrl) {
         const leafContainer = document.getElementById('leaf-container');
-        const leafImageUrl = window.fallingLeafImageUrl;
-
         if (leafContainer) {
-            // Hàm tạo lá
             function createLeaf() {
                 const leaf = document.createElement('div');
                 leaf.classList.add('leaf');
-                
-                // Đặt ảnh nền
-                leaf.style.backgroundImage = `url('${leafImageUrl}')`;
-                
-                // 1. Vị trí ngang ngẫu nhiên
+                leaf.style.backgroundImage = `url('${window.fallingLeafImageUrl}')`;
                 leaf.style.left = Math.random() * 100 + 'vw';
-                
-                // 2. Tốc độ rơi ngẫu nhiên (thời gian animation)
-                // (Từ 5 đến 10 giây)
-                const duration = Math.random() * 5 + 5;
+                const duration = Math.random() * 10 + 10;
                 leaf.style.animationDuration = duration + 's';
-                
-                // 3. Độ trễ ngẫu nhiên (để lá không rơi cùng lúc)
-                leaf.style.animationDelay = Math.random() * -10 + 's'; // Bắt đầu ngay
-                
-                // 4. Kích thước ngẫu nhiên (từ 20px đến 40px)
-                const size = Math.random() * 20 + 20;
-                leaf.style.width = size + 'px';
-                leaf.style.height = size + 'px';
-
-                // 5. Độ mờ ngẫu nhiên
-                leaf.style.opacity = Math.random() * 0.5 + 0.3; // Từ 0.3 đến 0.8
-                
+                leaf.style.animationDelay = Math.random() * -10 + 's'; 
+                leaf.style.width = (Math.random() * 20 + 20) + 'px';
+                leaf.style.height = leaf.style.width;
+                leaf.style.opacity = Math.random() * 0.5 + 0.3; 
                 leafContainer.appendChild(leaf);
-                
-                // Xóa "lá" sau khi nó rơi xong (để tiết kiệm bộ nhớ)
-                setTimeout(() => {
-                    leaf.remove();
-                }, duration * 1000); // Chuyển sang mili-giây
+                setTimeout(() => leaf.remove(), duration * 1000); 
             }
-
-            // Tạo ra 20 lá lúc ban đầu
-            for(let i = 0; i < 20; i++) {
-                createLeaf();
-            }
-            
-            // Cứ mỗi 1 giây lại tạo thêm 1 lá mới
-            setInterval(createLeaf, 1000);
+            for(let i=0; i<3; i++) createLeaf();
+            setInterval(createLeaf, 4000);
         }
     }
 
+    // 7. SCROLL REVEAL
+    const revealElements = document.querySelectorAll('.reveal-on-scroll');
+    const revealObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { root: null, threshold: 0.15, rootMargin: "0px 0px -50px 0px" });
+    revealElements.forEach(el => revealObserver.observe(el));
 });
