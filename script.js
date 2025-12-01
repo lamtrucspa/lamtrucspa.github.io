@@ -15,6 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const closeLightbox = document.getElementById('closeLightbox');
     if (lightbox) {
         document.addEventListener('click', function(e) {
+            // Chỉ zoom ảnh khi có class zoomable và không nằm trong modal chi tiết dịch vụ
             if (e.target.classList.contains('zoomable') && !e.target.closest('.service-modal-content')) {
                 lightboxImage.src = e.target.src; 
                 lightbox.classList.add('show'); 
@@ -25,14 +26,15 @@ document.addEventListener('DOMContentLoaded', () => {
         lightbox.addEventListener('click', (e) => { if (e.target === lightbox) close(); });
     }
 
-    // 3. SERVICE MODAL
+    // 3. SERVICE MODAL (Chi tiết dịch vụ)
     const serviceModal = document.getElementById('serviceModal');
     const closeServiceModal = document.getElementById('closeServiceModal');
     const modalMedia = document.getElementById('serviceModalMedia');
     if (serviceModal) {
         document.addEventListener('click', function(e) {
             const trigger = e.target.closest('.service-modal-trigger');
-            if (e.target.classList.contains('booking-trigger-small') || e.target.classList.contains('zoomable')) return;
+            // Nếu click vào nút "Gọi ngay" hoặc zoom ảnh thì không mở modal chi tiết
+            if (e.target.tagName === 'A' || e.target.classList.contains('zoomable')) return;
 
             if (trigger) {
                 e.preventDefault(); 
@@ -55,40 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
         serviceModal.addEventListener('click', (e) => { if (e.target === serviceModal) closeSvc(); });
     }
 
-    // 4. BOOKING MODAL
-    const bookingModal = document.getElementById('bookingModal');
-    const closeBookingModal = document.getElementById('closeBookingModal');
-    const bookingServiceInput = document.getElementById('bookServiceInput');
-
-    function openBooking(serviceName = null) {
-        if (bookingModal) {
-            if (serviceName && bookingServiceInput) {
-                bookingServiceInput.value = serviceName;
-            }
-            bookingModal.classList.add('show');
-        }
-    }
-    function closeBooking() {
-        if (bookingModal) bookingModal.classList.remove('show');
-    }
-
-    const heroBtn = document.getElementById('openBookingModalHero');
-    const ctaBtn = document.getElementById('openBookingModalCta');
-    if(heroBtn) heroBtn.addEventListener('click', (e) => { e.preventDefault(); openBooking(); });
-    if(ctaBtn) ctaBtn.addEventListener('click', (e) => { e.preventDefault(); openBooking(); });
-    
-    document.addEventListener('click', (e) => {
-        if (e.target.classList.contains('booking-trigger-small')) {
-            e.preventDefault();
-            e.stopPropagation();
-            openBooking(e.target.dataset.serviceName);
-        }
-    });
-
-    if (closeBookingModal) closeBookingModal.addEventListener('click', closeBooking);
-    if (bookingModal) bookingModal.addEventListener('click', (e) => { if (e.target === bookingModal) closeBooking(); });
-
-    // 5. MUSIC & ANIMATION
+    // 4. MUSIC & ANIMATION
     const musicBtn = document.getElementById('musicToggleBtn');
     const bgMusic = document.getElementById('bgMusic');
     const bambooLeft = document.getElementById('bambooLeft');
@@ -110,7 +79,7 @@ document.addEventListener('DOMContentLoaded', () => {
             else { bgMusic.pause(); updateMusicUI(false); }
         });
         
-        // Cố gắng tự động phát nhạc (trình duyệt thường chặn cái này)
+        // Tự động phát khi tương tác lần đầu
         document.body.addEventListener('click', function() {
             if (bgMusic.paused) {
                  bgMusic.play().then(() => updateMusicUI(true)).catch(() => {});
@@ -118,7 +87,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }, { once: true });
     }
 
-    // 6. FALLING LEAVES
+    // 5. FALLING LEAVES
     if (window.fallingLeafImageUrl) {
         const leafContainer = document.getElementById('leaf-container');
         if (leafContainer) {
@@ -141,7 +110,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // 7. SCROLL REVEAL
+    // 6. SCROLL REVEAL
     const revealElements = document.querySelectorAll('.reveal-on-scroll');
     const revealObserver = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
