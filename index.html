@@ -3,205 +3,147 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lam Trúc Spa - Trị liệu Đông Y Dưỡng Sinh</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-    <link rel="stylesheet" href="style.css">
-    <style>body::before { background-image: url('https://dienlanhnguyenhoang.com/uploads/1764430060-hinh-nen-menh-moc-22.jpg'); }</style>
-</head>
-<body class="antialiased">
-
-    <div id="leaf-container"></div>
-
-    <div class="music-control-container">
-        <div class="music-waves"></div>
-        <button id="musicToggleBtn" class="music-btn" title="Bật/Tắt nhạc">
-            <img src="https://dienlanhnguyenhoang.com/uploads/1764437175-Video-Player-Logo-Transparent-PNG.png" alt="Music Disc">
-        </button>
-        <audio id="bgMusic" loop>
-            <source src="https://dienlanhnguyenhoang.com/uploads/1762791269-nhacnen.mp3" type="audio/mpeg">
-        </audio>
-    </div>
+    <title>Lam Trúc Spa - Đang tải...</title>
     
-    <div class="bamboo-foreground">
-        <img src="https://dienlanhnguyenhoang.com/uploads/1762783906-Pngtreegreenbambooforestgreenbamboo_2454595.png" class="bamboo-img" id="bambooLeft" alt="Bamboo Decor">
-        <img src="https://dienlanhnguyenhoang.com/uploads/1762783906-Pngtreegreenbambooforestgreenbamboo_2454595.png" class="bamboo-img" id="bambooRight" style="transform: scaleX(-1);" alt="Bamboo Decor">
-    </div>
+    <!-- Nhúng Font chữ: Playfair Display (Tiêu đề sang trọng) & Quicksand (Nội dung hiện đại) -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,600&family=Quicksand:wght@400&display=swap" rel="stylesheet">
 
-    <div class="fab-container">
-        <div class="fab-links">
-            <a href="https://m.me/phanthi.ngocduy" target="_blank" rel="noopener noreferrer" class="fab-link" style="background-color: #FFFFFF;">
-                <img src="https://dienlanhnguyenhoang.com/uploads/1762820974-hd-official-new-facebook-messenger-icon-logo-png-701751694787819hlhkutzsan.png">
-            </a>
-            <a href="https://zalo.me/0388989732" target="_blank" rel="noopener noreferrer" class="fab-link" style="background-color: #FFFFFF;">
-                <img src="https://dienlanhnguyenhoang.com/uploads/1762820974-Logo-zalo-png.png">
-            </a>
-            <a href="tel:0388989732" target="_blank" rel="noopener noreferrer" class="fab-link" style="background-color: #FFFFFF;">
-                <img src="https://dienlanhnguyenhoang.com/uploads/1762820974-png-clipart-call-icon-telephone-call-prank-call-email-iphone-telefono-miscellaneous-text-thumbnail.png">
-            </a>
-        </div>
-        <div class="fab-toggle">
-            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"></path></svg>
-        </div>
-    </div>
+    <style>
+        /* --- 1. CẤU HÌNH CƠ BẢN --- */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden; /* Chặn thanh cuộn của trình duyệt mẹ */
+            font-family: 'Quicksand', sans-serif;
+            background-color: #fcfcfc;
+        }
 
-    <header class="bg-transparent absolute top-0 left-0 w-full z-10 py-4 px-3 md:py-6 md:px-8">
-        <div class="container mx-auto flex justify-between items-center max-w-6xl">
-            <a href="index.html" class="text-2xl md:text-3xl font-extrabold text-green-900 reveal-on-scroll">Xin Chào!</a>
-        </div>
-    </header>
+        /* --- 2. MÀN HÌNH LOADING LAM TRÚC SPA --- */
+        #loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #ffffff;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.8s ease-out, visibility 0.8s;
+        }
 
-    <main class="relative overflow-hidden">
-        <section class="min-h-[80vh] md:min-h-screen flex items-center justify-center py-16 px-4 md:px-8" id="hero">
-            <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-green-300 rounded-full filter blur-3xl opacity-20 animate-pulse"></div>
-            <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-emerald-300 rounded-full filter blur-3xl opacity-20 animate-pulse animation-delay-4000"></div>
-            
-            <div class="container mx-auto max-w-4xl text-center relative z-10 pt-10">
-                <h1 class="text-4xl md:text-7xl font-extrabold mb-4 md:mb-6 leading-tight text-green-900 reveal-on-scroll">Lam Trúc Spa</h1>
-                <p class="text-lg md:text-2xl text-gray-700 max-w-2xl mx-auto reveal-on-scroll mb-6">Lam Trúc nhẹ ru gió, Hương trúc quyện hồn hoa. Dưỡng sinh từ tâm tĩnh, Thân khỏe, mộng an hòa.</p>
-                <div class="reveal-on-scroll" style="transition-delay: 0.4s;">
-                    <a href="tel:0388989732" class="cta-button text-sm md:text-base px-6 py-3 no-underline inline-block">Gọi Ngay: 0388.989.732</a>
-                </div>
-            </div>
-        </section>
-
-        <section class="py-10 md:py-16 px-4 md:px-8" id="slider">
-            <div class="container mx-auto max-w-6xl reveal-on-scroll">
-                <div class="swiper mySwiper">
-                    <div class="swiper-wrapper">
-                        <div class="swiper-slide"><img src="https://dienlanhnguyenhoang.com/uploads/1762793899-1.jpg" alt="Slider Image"></div>
-                        <div class="swiper-slide"><img src="https://dienlanhnguyenhoang.com/uploads/1762819462-2.jpg" alt="Slider Image"></div>
-                        <div class="swiper-slide"><img src="https://dienlanhnguyenhoang.com/uploads/1762819484-download17.jpg" alt="Slider Image"></div>
-                        <div class="swiper-slide"><img src="https://dienlanhnguyenhoang.com/uploads/1762819502-IMG_20240730_142148.jpg" alt="Slider Image"></div>
-                        <div class="swiper-slide"><img src="https://dienlanhnguyenhoang.com/uploads/1762819517-IMG_20230927_123226.jpg" alt="Slider Image"></div>
-                        <div class="swiper-slide"><img src="https://dienlanhnguyenhoang.com/uploads/1762819851-download_17215510408211.jpg" alt="Slider Image"></div>
-                    </div>
-                    <div class="swiper-pagination"></div><div class="swiper-button-next"></div><div class="swiper-button-prev"></div>
-                </div>
-            </div>
-        </section>
-
-        <section class="py-12 md:py-32 px-4 md:px-8 bg-white shadow-lg" id="about">
-            <div class="container mx-auto max-w-4xl">
-                <h2 class="text-3xl md:text-5xl font-extrabold text-center mb-8 md:mb-12 text-green-900 reveal-on-scroll">Chăm Sóc Sức Khỏe Từ Tâm tại Lam Trúc Spa</h2>
-                <p class="text-lg md:text-xl text-gray-700 leading-relaxed text-center max-w-3xl mx-auto reveal-on-scroll" style="transition-delay: 0.2s;">
-                    Bạn đang mệt mỏi? Căng thẳng vì đau đầu, mất ngủ? Hay phiền muộn vì các chứng đau mỏi, cổ vai gáy, đau lưng và tê tay tê chân?<br /><br />
-                    Hãy đến với Lam Trúc Spa!<br /><br />
-                    Chúng tôi không chỉ mang đến trải nghiệm thư giãn tuyệt vời với gội đầu dưỡng sinh, mà còn cung cấp các liệu pháp trị liệu chuyên sâu, hỗ trợ các vấn đề sức khỏe như rối loạn tiền đình, viêm xoang, giải độc gan và làm ấm phụ khoa.<br /><br />
-                    Lam Trúc Spa – Nơi sức khỏe của bạn là ưu tiên hàng đầu. Hãy gọi điện ngay hôm nay để cảm nhận sự khác biệt!
-                </p>
-            </div>
-        </section>
+        /* Tên thương hiệu */
+        .brand-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            color: #2c3e50; /* Màu xanh than đậm sang trọng */
+            margin: 0 0 10px 0;
+            text-align: center;
+            letter-spacing: 1.5px;
+            animation: floatUp 1.5s ease-out;
+        }
         
-        <section class="py-12 md:py-32 px-4 md:px-8" id="menu">
-            <div class="container mx-auto max-w-4xl">
-                <h2 class="text-3xl md:text-5xl font-extrabold text-center mb-10 md:mb-16 text-green-900 reveal-on-scroll">Bảng giá Dịch vụ Trị liệu</h2>
-                <div class="space-y-8">
-                    
-                    <div class="bg-white p-6 rounded-lg border border-gray-200 shadow-lg transition-all hover:shadow-xl service-modal-trigger reveal-on-scroll"
-                         data-name="Trị liệu Cổ Vai Gáy" data-duration="60 phút" data-price="199.000đ" data-desc="Đả thông kinh lạc, làm mềm cơ, giảm đau mỏi vùng cổ, vai, gáy, có gói trải nghiệm: 30 phút 129.000đ" data-image="https://dienlanhnguyenhoang.com/uploads/1763034390-IMG_20251011_143405.jpg">
-                        <img src="https://dienlanhnguyenhoang.com/uploads/1763034390-IMG_20251011_143405.jpg" alt="Trị liệu Cổ Vai Gáy" class="w-full h-64 object-cover rounded-lg mb-4 border border-gray-200 cursor-zoom-in zoomable">
-                        <div class="flex flex-col sm:flex-row justify-between sm:items-center mb-2">
-                            <h3 class="text-2xl font-bold text-green-800">Trị liệu Cổ Vai Gáy</h3>
-                            <div class="flex-shrink-0 mt-2 sm:mt-0"><span class="text-lg font-medium text-gray-600">60 phút</span><span class="mx-2 text-gray-400">|</span><span class="text-xl font-bold text-green-700">199.000đ</span></div>
-                        </div>
-                        <p class="text-gray-600">Đả thông kinh lạc, làm mềm cơ, giảm đau mỏi vùng cổ, vai, gáy, có gói trải nghiệm: 30 phút 129.000đ</p>
-                        <a href="tel:0388989732" class="mt-4 inline-block text-sm text-green-700 font-bold hover:underline">👉 Gọi ngay: 0388.989.732</a>
-                    </div>
+        .brand-sub {
+            font-size: 1rem;
+            color: #888;
+            margin-bottom: 35px;
+            letter-spacing: 0.5px;
+            font-style: italic;
+        }
 
-                    <div class="bg-white p-6 rounded-lg border border-gray-200 shadow-lg transition-all hover:shadow-xl service-modal-trigger reveal-on-scroll"
-                         data-name="Trị Liệu Đau Lưng" data-duration="60 phút" data-price="199.000đ" data-desc="Đánh bay cơn đau mỏi thắt lưng dai dẳng và tìm lại giấc ngủ ngon với liệu trình Dưỡng thận chuyên sâu, mang lại cảm giác nhẹ nhõm ngay lần đầu trải nghiệm." data-image="https://dienlanhnguyenhoang.com/uploads/1762822053-IMG_20251011_143330.jpg">
-                        <img src="https://dienlanhnguyenhoang.com/uploads/1762822053-IMG_20251011_143330.jpg" alt="Trị Liệu Đau Lưng" class="w-full h-64 object-cover rounded-lg mb-4 border border-gray-200 cursor-zoom-in zoomable">
-                        <div class="flex flex-col sm:flex-row justify-between sm:items-center mb-2">
-                            <h3 class="text-2xl font-bold text-green-800">Trị Liệu Đau Lưng</h3>
-                            <div class="flex-shrink-0 mt-2 sm:mt-0"><span class="text-lg font-medium text-gray-600">60 phút</span><span class="mx-2 text-gray-400">|</span><span class="text-xl font-bold text-green-700">199.000đ</span></div>
-                        </div>
-                        <p class="text-gray-600">Đánh bay cơn đau mỏi thắt lưng dai dẳng...</p>
-                        <a href="tel:0388989732" class="mt-4 inline-block text-sm text-green-700 font-bold hover:underline">👉 Gọi ngay: 0388.989.732</a>
-                    </div>
+        /* Hiệu ứng loading vòng tròn */
+        .spinner {
+            width: 45px;
+            height: 45px;
+            border: 3px solid #f0f0f0;
+            /* Màu vàng kim (Gold) cho Spa: #d4af37 */
+            border-top: 3px solid #d4af37; 
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
 
-                     <div class="bg-white p-6 rounded-lg border border-gray-200 shadow-lg transition-all hover:shadow-xl service-modal-trigger reveal-on-scroll"
-                         data-name="Gội Đầu Dưỡng Sinh" data-duration="45 Phút" data-price="99.000đ" data-desc="Gội đầu dưỡng sinh kết hợp làm sạch và massage ấn huyệt." data-image="https://dienlanhnguyenhoang.com/uploads/1763035009-download_1721550997454.jpg">
-                        <img src="https://dienlanhnguyenhoang.com/uploads/1763035009-download_1721550997454.jpg" alt="Gội Đầu Dưỡng Sinh" class="w-full h-64 object-cover rounded-lg mb-4 border border-gray-200 cursor-zoom-in zoomable">
-                        <div class="flex flex-col sm:flex-row justify-between sm:items-center mb-2">
-                            <h3 class="text-2xl font-bold text-green-800">Gội Đầu Dưỡng Sinh</h3>
-                            <div class="flex-shrink-0 mt-2 sm:mt-0"><span class="text-lg font-medium text-gray-600">45 Phút</span><span class="mx-2 text-gray-400">|</span><span class="text-xl font-bold text-green-700">99.000đ</span></div>
-                        </div>
-                        <p class="text-gray-600">Gội đầu dưỡng sinh kết hợp làm sạch và massage ấn huyệt.</p>
-                        <a href="tel:0388989732" class="mt-4 inline-block text-sm text-green-700 font-bold hover:underline">👉 Gọi ngay: 0388.989.732</a>
-                    </div>
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
 
-                </div>
-            </div>
-        </section>
+        @keyframes floatUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
 
-        <section class="py-12 md:py-32 px-4 md:px-8 bg-white shadow-lg" id="philosophy">
-            <div class="container mx-auto max-w-4xl text-center">
-                <h2 class="text-3xl md:text-5xl font-extrabold mb-8 md:mb-12 text-green-900 reveal-on-scroll">Giải Pháp Trị Liệu Của Chúng Tôi</h2>
-                <p class="text-lg md:text-xl text-gray-700 leading-relaxed max-w-3xl mx-auto reveal-on-scroll" style="transition-delay: 0.2s;">
-                    Tại Lam Trúc Spa, chúng tôi giải quyết vấn đề đau mỏi bằng một combo trị liệu chuyên sâu:<br/>
-                    Xoa bóp Bấm huyệt: "Mở khóa" các điểm đau.<br/>
-                    Massage Đả thông Kinh lạc: Khai thông dòng chảy khí huyết.<br/>
-                    Đắp thuốc Bài độc: Dùng thảo dược ấm nóng để "hút" sạch hàn khí.
-                </p>
-            </div>
-        </section>
+        /* --- 3. KHUNG IFRAME CHỨA WEBSITE CHÍNH --- */
+        iframe {
+            display: block;
+            width: 100%;
+            height: 100%;
+            border: none;
+            opacity: 0; /* Ẩn lúc đầu để chờ load xong mới hiện */
+            transition: opacity 1s ease-in;
+        }
+        
+        /* Class ẩn loading */
+        .hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+        
+        /* Class hiện web */
+        .visible {
+            opacity: 1 !important;
+        }
+    </style>
+</head>
+<body>
 
-        <section class="py-12 md:py-32 px-4 md:px-8" id="cta">
-            <div class="container mx-auto max-w-4xl text-center relative z-10">
-                <div class="absolute inset-0 w-full h-full bg-green-300 rounded-full filter blur-3xl opacity-30"></div>
-                <div class="relative z-10">
-                    <h2 class="text-3xl md:text-5xl font-extrabold mb-6 text-green-900 reveal-on-scroll">Gọi ngay để được tư vấn, sắp lịch</h2>
-                    <p class="text-xl md:text-2xl text-gray-700 max-w-2xl mx-auto reveal-on-scroll" style="transition-delay: 0.2s;">Hãy để chúng tôi đồng hành cùng bạn trên con đường tìm lại sức khỏe và sự bình yên trong tâm hồn.</p>
-                    <div class="reveal-on-scroll" style="transition-delay: 0.4s;">
-                        <a href="tel:0388989732" class="cta-button no-underline inline-block">Gọi Ngay: 0388.989.732</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="py-12 md:py-32 px-4 md:px-8 bg-white shadow-lg" id="contact">
-            <div class="container mx-auto max-w-4xl text-center">
-                <h2 class="text-3xl md:text-5xl font-extrabold mb-8 md:mb-12 text-green-900 reveal-on-scroll">Liên hệ & Địa chỉ</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-left">
-                    <div class="space-y-6 reveal-on-scroll">
-                        <div><h3 class="text-lg font-semibold text-gray-500 uppercase tracking-wider">Địa chỉ</h3><p class="text-xl text-green-800">243/3 Ấp Bình Sơn, Xã Vĩnh Công, Tỉnh Tây Ninh.</p></div>
-                        <div><h3 class="text-lg font-semibold text-gray-500 uppercase tracking-wider">Gọi cho chúng tôi</h3><a href="tel:0388989732" class="text-xl text-green-800 hover:text-green-600">0388989732</a></div>
-                        <div><h3 class="text-lg font-semibold text-gray-500 uppercase tracking-wider">Chat với chúng tôi</h3><div class="flex space-x-4 mt-2"><a href="https://zalo.me/0388989732" class="text-xl text-green-800 hover:text-green-600">Zalo</a><a href="https://m.me/phanthi.ngocduy" class="text-xl text-green-800 hover:text-green-600">Messenger</a></div></div>
-                    </div>
-                    <div class="reveal-on-scroll" style="transition-delay: 0.3s;">
-                        <iframe class="rounded-lg border border-gray-200" width="100%" height="300" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d583.116875226062!2d106.45751464655554!3d10.52214571219001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x310ab5acafe0c7f5%3A0x1e8141d31ba27ddd!2sLam%20Tr%C3%BAc%20Spa!5e0!3m2!1svi!2s!4v1762793652101!5m2!1svi!2s" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer class="py-8 md:py-12 bg-transparent border-t border-gray-200/80">
-        <div class="container mx-auto max-w-6xl text-center text-gray-600">
-            <p class="font-bold text-lg text-green-900 mb-2">Lam Trúc Spa</p>
-            <p>Hotline: <a href="tel:0388989732">0388989732</a></p>
-            <p class="mt-4">© 2025 Lam Trúc Spa.</p>
-        </div>
-    </footer>
-
-    <div id="serviceModal" class="service-modal">
-        <div class="service-modal-content">
-            <span id="closeServiceModal" class="service-modal-close">×</span>
-            <div id="serviceModalMedia" class="service-modal-media"></div>
-            <div class="service-modal-header">
-                <h3 id="serviceModalTitle" class="service-modal-title"></h3>
-                <p id="serviceModalInfo" class="service-modal-info"></p>
-            </div>
-            <div class="service-modal-body"><p id="serviceModalDesc" class="service-modal-desc"></p></div>
-        </div>
+    <!-- PHẦN 1: LOADING SCREEN -->
+    <div id="loading-screen">
+        <h1 class="brand-name">Lam Trúc Spa</h1>
+        <p class="brand-sub">Tinh hoa thư giãn & làm đẹp</p>
+        <div class="spinner"></div>
     </div>
 
-    <div id="imageLightbox"><span id="closeLightbox">×</span><img id="lightboxImage" src="" alt="Ảnh phóng to"></div>
+    <!-- PHẦN 2: TRANG WEB CHÍNH -->
+    <!-- Đã gắn link hosting của bạn -->
+    <iframe 
+        id="main-frame"
+        src="https://dienlanhnguyenhoang.com/spa" 
+        title="Lam Trúc Spa Official Website"
+        onload="webLoaded()">
+        <!-- Fallback cho trình duyệt quá cũ -->
+        <p style="text-align:center; padding: 20px;">
+            Trình duyệt của bạn không hỗ trợ hiển thị. 
+            Vui lòng <a href="https://dienlanhnguyenhoang.com/spa">bấm vào đây để truy cập Lam Trúc Spa</a>.
+        </p>
+    </iframe>
 
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <script src="script.js"></script>
-    <script>window.fallingLeafImageUrl = 'https://dienlanhnguyenhoang.com/uploads/1762791269-8325571.png';</script>
+    <script>
+        // Hàm xử lý khi web đã tải xong
+        function webLoaded() {
+            const loader = document.getElementById('loading-screen');
+            const frame = document.getElementById('main-frame');
+
+            // Delay nhẹ 0.8s để khách kịp nhìn thấy thương hiệu
+            setTimeout(() => {
+                loader.classList.add('hidden');
+                frame.classList.add('visible');
+                document.title = "Trang Chủ - Lam Trúc Spa"; // Đổi tên tab trình duyệt
+            }, 800);
+        }
+
+        // --- CƠ CHẾ AN TOÀN ---
+        // Nếu hosting load quá chậm hoặc bị lỗi (sau 7 giây),
+        // vẫn bắt buộc tắt loading để khách xem được nội dung (dù có thể chưa load xong hẳn).
+        setTimeout(() => {
+            const loader = document.getElementById('loading-screen');
+            if (!loader.classList.contains('hidden')) {
+                console.log("Forced loading completion due to timeout.");
+                webLoaded();
+            }
+        }, 7000); 
+    </script>
 </body>
 </html>
