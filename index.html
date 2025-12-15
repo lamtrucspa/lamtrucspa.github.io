@@ -4,26 +4,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <!-- --- CẤU HÌNH SEO & CHIA SẺ LINK (MỚI THÊM) --- -->
-    <title>Lam Trúc Spa - Tinh hoa thư giãn tại Long An</title>
-    <meta name="description" content="Lam Trúc Spa, địa chỉ: 243/3 Bình Sơn, Bình Quới, Châu Thành, Long An. SDT: 0388.989.732. Nơi thư giãn và chăm sóc sắc đẹp uy tín.">
+    <!-- --- CẤU HÌNH SEO & CHIA SẺ LINK (ĐÃ NÂNG CẤP) --- -->
+    <title>Lam Trúc Spa - Trị Liệu Dưỡng Sinh Đông Y Long An</title>
     
-    <!-- Open Graph cho Facebook, Zalo, Tin nhắn -->
+    <!-- Mô tả SEO (Hiện trên Google): Viết lại hấp dẫn hơn -->
+    <meta name="description" content="Lam Trúc Spa - Tinh hoa Trị liệu Dưỡng sinh Đông Y. Chuyên gội đầu dưỡng sinh, massage đả thông kinh lạc, trị liệu cổ vai gáy giúp xua tan mệt mỏi, phục hồi năng lượng từ bên trong. Địa chỉ: 243/3 Bình Sơn, Bình Quới, Châu Thành, Long An. Hotline: 0388.989.732.">
+    
+    <!-- Open Graph (Hiện khi chia sẻ Zalo, Facebook) -->
     <meta property="og:type" content="website">
-    <meta property="og:title" content="Lam Trúc Spa - Thư giãn & Làm đẹp">
-    <meta property="og:description" content="Địa chỉ: 243/3 Bình Sơn, Bình Quới, Châu Thành, Long An. Hotline: 0388.989.732">
+    <meta property="og:title" content="Lam Trúc Spa - Trị Liệu Dưỡng Sinh Đông Y">
+    <meta property="og:description" content="Thư giãn tuyệt đối với liệu pháp Đông Y: Gội đầu dưỡng sinh, Massage trị liệu cổ vai gáy. Đặt lịch ngay: 0388.989.732 tại Châu Thành, Long An.">
+    
+    <!-- HÌNH ẢNH CHIA SẺ (Đã thêm hình mới lên đầu để ưu tiên hiển thị) -->
+    <meta property="og:image" content="https://dienlanhnguyenhoang.com/spa/uploads/photo_2025-12-15_09-06-38.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    
+    <!-- Hình ảnh phụ (giữ lại hình cũ làm dự phòng) -->
     <meta property="og:image" content="https://dienlanhnguyenhoang.com/spa/uploads/1762822220-IMG_20250820_222719.jpg">
+    
     <meta property="og:url" content="https://dienlanhnguyenhoang.com/spa">
     <meta property="og:site_name" content="Lam Trúc Spa">
 
-    <!-- Thẻ Twitter Card (Hỗ trợ thêm các mạng xã hội khác) -->
+    <!-- Thẻ Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Lam Trúc Spa - Long An">
-    <meta name="twitter:description" content="Địa chỉ: 243/3 Bình Sơn, Bình Quới, Châu Thành, Long An. SDT: 0388.989.732">
-    <meta name="twitter:image" content="https://dienlanhnguyenhoang.com/spa/uploads/1762822220-IMG_20250820_222719.jpg">
+    <meta name="twitter:title" content="Lam Trúc Spa - Dưỡng Sinh Đông Y">
+    <meta name="twitter:description" content="Địa chỉ: 243/3 Bình Sơn, Bình Quới, Châu Thành, Long An. Hotline: 0388.989.732">
+    <meta name="twitter:image" content="https://dienlanhnguyenhoang.com/spa/uploads/photo_2025-12-15_09-06-38.jpg">
 
-    <!-- Favicon (Icon nhỏ trên tab trình duyệt - dùng luôn ảnh spa làm icon tạm thời) -->
-    <link rel="icon" href="https://dienlanhnguyenhoang.com/spa/uploads/1762822220-IMG_20250820_222719.jpg" type="image/x-icon">
+    <!-- Favicon (Dùng hình mới làm icon nhỏ trên tab trình duyệt) -->
+    <link rel="icon" href="https://dienlanhnguyenhoang.com/spa/uploads/photo_2025-12-15_09-06-38.jpg" type="image/x-icon">
 
     <!-- Nhúng Font chữ: Playfair Display (Tiêu đề sang trọng) & Quicksand (Nội dung hiện đại) -->
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,600&family=Quicksand:wght@400&display=swap" rel="stylesheet">
@@ -67,8 +77,8 @@
         }
         
         .brand-sub {
-            font-size: 1rem;
-            color: #888;
+            font-size: 1.1rem;
+            color: #8b5a2b; /* Đổi sang màu nâu gỗ nhẹ cho hợp Đông Y */
             margin-bottom: 35px;
             letter-spacing: 0.5px;
             font-style: italic;
@@ -122,7 +132,8 @@
     <!-- PHẦN 1: LOADING SCREEN -->
     <div id="loading-screen">
         <h1 class="brand-name">Lam Trúc Spa</h1>
-        <p class="brand-sub">Tinh hoa thư giãn & làm đẹp</p>
+        <!-- Cập nhật slogan Loading cho hợp phong cách Đông Y -->
+        <p class="brand-sub">Trị Liệu Dưỡng Sinh Đông Y</p>
         <div class="spinner"></div>
     </div>
 
@@ -150,7 +161,6 @@
             setTimeout(() => {
                 loader.classList.add('hidden');
                 frame.classList.add('visible');
-                // Không đổi tiêu đề bằng JS nữa để giữ nguyên tiêu đề SEO đã cài đặt
             }, 800);
         }
 
