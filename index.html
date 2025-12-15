@@ -15,7 +15,7 @@
     <meta property="og:title" content="Lam Trúc Spa - Trị Liệu Dưỡng Sinh Đông Y">
     <meta property="og:description" content="Thư giãn tuyệt đối với liệu pháp Đông Y: Gội đầu dưỡng sinh, Massage trị liệu cổ vai gáy. Đặt lịch ngay: 0388.989.732 tại Châu Thành, Long An.">
     
-    <!-- HÌNH ẢNH CHIA SẺ (Đã thêm hình mới lên đầu để ưu tiên hiển thị) -->
+    <!-- HÌNH ẢNH CHIA SẺ -->
     <meta property="og:image" content="https://dienlanhnguyenhoang.com/spa/uploads/photo_2025-12-15_09-06-38.jpg">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
@@ -29,11 +29,11 @@
     <meta name="twitter:description" content="Địa chỉ: 243/3 Bình Sơn, Bình Quới, Châu Thành, Long An. Hotline: 0388.989.732">
     <meta name="twitter:image" content="https://dienlanhnguyenhoang.com/spa/uploads/photo_2025-12-15_09-06-38.jpg">
 
-    <!-- Favicon (Đã cập nhật link icon riêng biệt) -->
+    <!-- Favicon -->
     <link rel="icon" href="https://dienlanhnguyenhoang.com/spa/uploads/icon.png" type="image/png">
 
-    <!-- Nhúng Font chữ: Playfair Display (Tiêu đề sang trọng) & Quicksand (Nội dung hiện đại) -->
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,600&family=Quicksand:wght@400&display=swap" rel="stylesheet">
+    <!-- Nhúng Font chữ -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,600&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
 
     <style>
         /* --- 1. CẤU HÌNH CƠ BẢN --- */
@@ -41,12 +41,12 @@
             margin: 0;
             padding: 0;
             height: 100%;
-            overflow: hidden; /* Chặn thanh cuộn của trình duyệt mẹ */
+            overflow: hidden;
             font-family: 'Quicksand', sans-serif;
             background-color: #fcfcfc;
         }
 
-        /* --- 2. MÀN HÌNH LOADING LAM TRÚC SPA --- */
+        /* --- 2. MÀN HÌNH LOADING --- */
         #loading-screen {
             position: fixed;
             top: 0;
@@ -62,11 +62,10 @@
             transition: opacity 0.8s ease-out, visibility 0.8s;
         }
 
-        /* Tên thương hiệu */
         .brand-name {
             font-family: 'Playfair Display', serif;
             font-size: 2.8rem;
-            color: #2c3e50; /* Màu xanh than đậm sang trọng */
+            color: #2c3e50;
             margin: 0 0 10px 0;
             text-align: center;
             letter-spacing: 1.5px;
@@ -75,53 +74,109 @@
         
         .brand-sub {
             font-size: 1.1rem;
-            color: #8b5a2b; /* Đổi sang màu nâu gỗ nhẹ cho hợp Đông Y */
+            color: #8b5a2b;
             margin-bottom: 35px;
             letter-spacing: 0.5px;
             font-style: italic;
         }
 
-        /* Hiệu ứng loading vòng tròn */
+        /* --- PHẦN TRẠNG THÁI LOADING (XOAY) --- */
+        .loading-state {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: opacity 0.3s ease-out;
+        }
+
         .spinner {
             width: 45px;
             height: 45px;
             border: 3px solid #f0f0f0;
-            /* Màu vàng kim (Gold) cho Spa: #d4af37 */
             border-top: 3px solid #d4af37; 
             border-radius: 50%;
             animation: spin 1s linear infinite;
         }
 
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+        .security-msg {
+            margin-top: 20px;
+            font-size: 0.9rem;
+            color: #7f8c8d;
+            animation: fadeIn 2s infinite;
         }
 
-        @keyframes floatUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+        /* --- PHẦN TRẠNG THÁI THÀNH CÔNG (TÍCH XANH) --- */
+        .success-state {
+            display: none; /* Ẩn mặc định */
+            flex-direction: column;
+            align-items: center;
+            animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
-        /* --- 3. KHUNG IFRAME CHỨA WEBSITE CHÍNH --- */
+        /* Dấu tích xanh SVG */
+        .checkmark {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            display: block;
+            stroke-width: 2;
+            stroke: #fff;
+            stroke-miterlimit: 10;
+            box-shadow: inset 0px 0px 0px #27ae60;
+            animation: fill .4s ease-in-out .4s forwards, scale .3s ease-in-out .9s both;
+        }
+
+        .checkmark__circle {
+            stroke-dasharray: 166;
+            stroke-dashoffset: 166;
+            stroke-width: 2;
+            stroke-miterlimit: 10;
+            stroke: #27ae60;
+            fill: none;
+            animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+        }
+
+        .checkmark__check {
+            transform-origin: 50% 50%;
+            stroke-dasharray: 48;
+            stroke-dashoffset: 48;
+            animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards;
+        }
+
+        .success-msg {
+            margin-top: 15px;
+            color: #27ae60; /* Màu xanh lá an toàn */
+            font-weight: 600;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        /* --- ANIMATIONS --- */
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        @keyframes floatUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeIn { 0%, 100% { opacity: 0.6; } 50% { opacity: 1; } }
+        @keyframes popIn { 0% { opacity: 0; transform: scale(0.8); } 100% { opacity: 1; transform: scale(1); } }
+        
+        /* Animation cho dấu tích */
+        @keyframes stroke { 100% { stroke-dashoffset: 0; } }
+        @keyframes scale { 0%, 100% { transform: none; } 50% { transform: scale3d(1.1, 1.1, 1); } }
+        @keyframes fill { 100% { box-shadow: inset 0px 0px 0px 30px #27ae60; } }
+
+        /* --- 3. KHUNG IFRAME --- */
         iframe {
             display: block;
             width: 100%;
             height: 100%;
             border: none;
-            opacity: 0; /* Ẩn lúc đầu để chờ load xong mới hiện */
+            opacity: 0;
             transition: opacity 1s ease-in;
         }
         
-        /* Class ẩn loading */
-        .hidden {
-            opacity: 0;
-            visibility: hidden;
-        }
-        
-        /* Class hiện web */
-        .visible {
-            opacity: 1 !important;
-        }
+        .hidden { opacity: 0; visibility: hidden; }
+        .visible { opacity: 1 !important; }
+        .display-none { display: none !important; }
+        .display-flex { display: flex !important; }
     </style>
 </head>
 <body>
@@ -129,48 +184,74 @@
     <!-- PHẦN 1: LOADING SCREEN -->
     <div id="loading-screen">
         <h1 class="brand-name">Lam Trúc Spa</h1>
-        <!-- Cập nhật slogan Loading cho hợp phong cách Đông Y -->
         <p class="brand-sub">Tinh Hoa Đông Y - Khơi Nguồn Sinh Khí</p>
-        <div class="spinner"></div>
+        
+        <!-- Trạng thái 1: Đang tải & Kiểm tra -->
+        <div id="loading-state" class="loading-state">
+            <div class="spinner"></div>
+            <p class="security-msg">Đang kiểm tra tính bảo mật...</p>
+        </div>
+
+        <!-- Trạng thái 2: Thành công (Tích xanh) -->
+        <div id="success-state" class="success-state">
+            <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+                <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none"/>
+                <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+            </svg>
+            <p class="success-msg">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                </svg>
+                Kết nối an toàn
+            </p>
+        </div>
     </div>
 
     <!-- PHẦN 2: TRANG WEB CHÍNH -->
-    <!-- Đã gắn link hosting của bạn -->
     <iframe 
         id="main-frame"
         src="https://dienlanhnguyenhoang.com/spa" 
         title="Lam Trúc Spa Official Website"
         onload="webLoaded()">
-        <!-- Fallback cho trình duyệt quá cũ -->
         <p style="text-align:center; padding: 20px;">
-            Trình duyệt của bạn không hỗ trợ hiển thị. 
-            Vui lòng <a href="https://dienlanhnguyenhoang.com/spa">bấm vào đây để truy cập Lam Trúc Spa</a>.
+            Trình duyệt không hỗ trợ. <a href="https://dienlanhnguyenhoang.com/spa">Bấm vào đây</a>.
         </p>
     </iframe>
 
     <script>
-        // Hàm xử lý khi web đã tải xong
+        let isLoaded = false;
+
         function webLoaded() {
+            if (isLoaded) return;
+            isLoaded = true;
+
+            const loadingState = document.getElementById('loading-state');
+            const successState = document.getElementById('success-state');
             const loader = document.getElementById('loading-screen');
             const frame = document.getElementById('main-frame');
 
-            // Delay nhẹ 0.8s để khách kịp nhìn thấy thương hiệu
+            // BƯỚC 1: Ẩn spinner xoay
+            loadingState.style.display = 'none';
+
+            // BƯỚC 2: Hiện tích xanh "Kết nối an toàn"
+            successState.style.display = 'flex';
+
+            // BƯỚC 3: Giữ tích xanh 1.2 giây để khách nhìn thấy và yên tâm
             setTimeout(() => {
-                loader.classList.add('hidden');
-                frame.classList.add('visible');
-            }, 800);
+                loader.classList.add('hidden'); // Mờ dần màn hình chờ
+                frame.classList.add('visible'); // Hiện web chính
+            }, 1200);
         }
 
         // --- CƠ CHẾ AN TOÀN ---
-        // Nếu hosting load quá chậm hoặc bị lỗi (sau 7 giây),
-        // vẫn bắt buộc tắt loading để khách xem được nội dung (dù có thể chưa load xong hẳn).
+        // Nếu sau 5s vẫn chưa tải xong, vẫn ép buộc hiện "An toàn" rồi vào web
+        // Để tránh khách phải đợi quá lâu
         setTimeout(() => {
-            const loader = document.getElementById('loading-screen');
-            if (!loader.classList.contains('hidden')) {
-                console.log("Forced loading completion due to timeout.");
+            if (!isLoaded) {
+                console.log("Timeout trigger");
                 webLoaded();
             }
-        }, 7000); 
+        }, 5000); 
     </script>
 </body>
 </html>
