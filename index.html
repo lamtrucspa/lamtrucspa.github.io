@@ -3,8 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lam Trúc Spa - Đang tải...</title>
     
+    <!-- --- CẤU HÌNH SEO & CHIA SẺ LINK (MỚI THÊM) --- -->
+    <title>Lam Trúc Spa - Tinh hoa thư giãn tại Long An</title>
+    <meta name="description" content="Lam Trúc Spa, địa chỉ: 243/3 Bình Sơn, Bình Quới, Châu Thành, Long An. SDT: 0388.989.732. Nơi thư giãn và chăm sóc sắc đẹp uy tín.">
+    
+    <!-- Open Graph cho Facebook, Zalo, Tin nhắn -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Lam Trúc Spa - Thư giãn & Làm đẹp">
+    <meta property="og:description" content="Địa chỉ: 243/3 Bình Sơn, Bình Quới, Châu Thành, Long An. Hotline: 0388.989.732">
+    <meta property="og:image" content="https://dienlanhnguyenhoang.com/spa/uploads/1762822220-IMG_20250820_222719.jpg">
+    <meta property="og:url" content="https://dienlanhnguyenhoang.com/spa">
+    <meta property="og:site_name" content="Lam Trúc Spa">
+
+    <!-- Thẻ Twitter Card (Hỗ trợ thêm các mạng xã hội khác) -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Lam Trúc Spa - Long An">
+    <meta name="twitter:description" content="Địa chỉ: 243/3 Bình Sơn, Bình Quới, Châu Thành, Long An. SDT: 0388.989.732">
+    <meta name="twitter:image" content="https://dienlanhnguyenhoang.com/spa/uploads/1762822220-IMG_20250820_222719.jpg">
+
+    <!-- Favicon (Icon nhỏ trên tab trình duyệt - dùng luôn ảnh spa làm icon tạm thời) -->
+    <link rel="icon" href="https://dienlanhnguyenhoang.com/spa/uploads/1762822220-IMG_20250820_222719.jpg" type="image/x-icon">
+
     <!-- Nhúng Font chữ: Playfair Display (Tiêu đề sang trọng) & Quicksand (Nội dung hiện đại) -->
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,600&family=Quicksand:wght@400&display=swap" rel="stylesheet">
 
@@ -130,7 +150,7 @@
             setTimeout(() => {
                 loader.classList.add('hidden');
                 frame.classList.add('visible');
-                document.title = "Trang Chủ - Lam Trúc Spa"; // Đổi tên tab trình duyệt
+                // Không đổi tiêu đề bằng JS nữa để giữ nguyên tiêu đề SEO đã cài đặt
             }, 800);
         }
 
